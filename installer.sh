@@ -490,7 +490,7 @@ elif [ "$assistants" = "Both" ] || [ "$assistants" = "Google-Assistant" ] ; then
    USER_RESPONSE=$?
    if [ "$USER_RESPONSE" = "$YES_ANSWER" ]; then
      echo "=============Starting Google Assistant Installer============="
-     git clone https://github/shivasiddharth/GassistPi -b AssistantPi
+     git clone https://github/shivasiddharth/GassistPi -b Gassistant-RPi
      sudo chmod +x /home/pi/Assistants-Pi/scripts/snowboy-deps-installer.sh
      sudo chmod +x /home/pi/Assistants-Pi/scripts/gassist-installer-pi3.sh
      sudo /home/pi/Assistants-Pi/scripts/snowboy-deps-installer.sh
