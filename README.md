@@ -1,2 +1,2 @@
 # Assistants-Pi
-Simultaneously run Google Assistant, Alexa and Mycroft on Raspberry Pi
+Simultaneously run Google Assistant and Alexa on Raspberry Pi

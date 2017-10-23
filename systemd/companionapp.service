@@ -1,0 +1,15 @@
+[Unit]
+Description=Companion Service
+After=network.target
+
+[Service]
+Environment=PATH=/home/pi/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ExecStart=/bin/bash /home/pi/Assistants-Pi/scripts/companionstart.sh
+WorkingDirectory=/home/pi/
+StandardOutput=tty,
+StandardError=tty
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
