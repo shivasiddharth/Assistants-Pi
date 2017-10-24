@@ -2,6 +2,23 @@
 **One installer for both Google Asistant and Amazon Alexa**  
 **Simultaneously run Google Assistant and Alexa on Raspberry Pi**  
 
+****************************************************************
+**Before Starting the setup**
+****************************************************************
+**For Google Assistant**  
+1. Download credentials--->.json file (refer to this doc for creating credentials https://developers.google.com/assistant/sdk/develop/python/config-dev-project-and-account)   
+
+2. Place the .json file in/home/pi directory  
+
+3. Rename it to assistant--->assistant.json 
+
+**For Amazon Alexa**  
+1. Create a security profile for alexa-avs-sample-app if you already don't have one.  
+https://github.com/alexa/alexa-avs-sample-app/wiki/Create-Security-Profile
+
+***************************************************************
+**Setup Amazon Alexa, Google Assistant or Both **
+***************************************************************
 1. Clone the git using:
 ```
 git clone https://github.com/shivasiddharth/Assistants-Pi  
