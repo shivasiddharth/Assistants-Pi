@@ -42,11 +42,46 @@ parse_user_input()
     printf "Please enter a valid response.\n"
   done
 }
+select_option()
+{
+  local _result=$1
+  local ARGS=("$@")
+  if [ "$#" -gt 0 ]; then
+      while [ true ]; do
+         local count=1
+         for option in "${ARGS[@]:1}"; do
+            echo "$count) $option"
+            ((count+=1))
+         done
+         echo ""
+         local USER_RESPONSE
+         read -p "Please select an option [1-$(($#-1))] " USER_RESPONSE
+         case $USER_RESPONSE in
+             ''|*[!0-9]*) echo "Please provide a valid number"
+                          continue
+                          ;;
+             *) if [[ "$USER_RESPONSE" -gt 0 && $((USER_RESPONSE+1)) -le "$#" ]]; then
+                    local SELECTION=${ARGS[($USER_RESPONSE)]}
+                    echo "Selection: $SELECTION"
+                    eval $_result=\$SELECTION
+                    return
+                else
+                    clear
+                    echo "Please select a valid option"
+                fi
+                ;;
+         esac
+      done
+  fi
+}
+
 echo ""
 echo "First let's test the speaker output. Are you ready?"
 parse_user_input 1 1 0
 USER_RESPONSE=$?
 if [ "$USER_RESPONSE" = "$YES_ANSWER" ]; then
+   echo ""
+   echo ""
    echo "=============Testing Speaker output============="
    speaker-test -t wav -l 2
 fi
@@ -59,6 +94,8 @@ echo "Did you hear the audio from speaker?"
 parse_user_input 1 1 0
 USER_RESPONSE=$?
 if [ "$USER_RESPONSE" = "$YES_ANSWER" ]; then
+  echo ""
+  echo ""
   echo "Great!! Proceeding to test the microphones......"
   echo ""
   echo ""
@@ -66,9 +103,17 @@ if [ "$USER_RESPONSE" = "$YES_ANSWER" ]; then
   parse_user_input 1 1 0
   USER_RESPONSE=$?
   if [ "$USER_RESPONSE" = "$YES_ANSWER" ]; then
-    echo "=============Recording Mic Audio Sample============="
-    arecord -d10 -r16000 -c1 /home/pi/mic-test.wav
-    echo ""
+    echo "Select your audio config that you used:"
+    select_option mic AIY-HAT-or-CUSTOM-HAT USB-DAC-or-USB-SOUNDCARD-or-USB-MIC
+    if [ $mic = AIY-HAT-or-CUSTOM-HAT ]; then
+      echo "=============Recording Mic Audio Sample============="
+      arecord -d 10 -D hw:0,0 -r 16000 -f S16_LE -c1 /home/pi/mic-test.wav
+      echo ""
+    elif [ $mic = USB-DAC-or-USB-SOUNDCARD-or-USB-MIC ];then
+      echo "=============Recording Mic Audio Sample============="
+      arecord -d 10 -D hw:1,0 -r 16000 -f S16_LE -c1 /home/pi/mic-test.wav
+      echo ""
+    fi
     echo "Finished recording the samples."
     echo ""
     echo "Playing back the recorded audio sample......"
@@ -78,7 +123,11 @@ if [ "$USER_RESPONSE" = "$YES_ANSWER" ]; then
     parse_user_input 1 1 0
     USER_RESPONSE=$?
     if [ "$USER_RESPONSE" = "$YES_ANSWER" ]; then
+      echo ""
+      echo ""
       echo "Great!! Proceed to installing the voice assistants...."
+      echo ""
+      echo ""
       exit
     fi
     if [ "$USER_RESPONSE" = "$NO_ANSWER" ]; then
