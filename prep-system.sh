@@ -47,35 +47,35 @@ echo "You have chosen to use $audio audio configuration"
 echo ""
 case $audio in
     AIY-HAT)
-        sudo chmod +x /home/pi/Assistant-Pi/audio-drivers/AIY-HAT/scripts/configure-driver.sh  
-        sudo /home/pi/Assistant-Pi/audio-drivers/AIY-HAT/scripts/configure-driver.sh  
-        sudo chmod +x /home/pi/Assistant-Pi/audio-drivers/AIY-HAT/scripts/install-alsa-config.sh  
-        sudo /home/pi/Assistant-Pi/audio-drivers/AIY-HAT/scripts/install-alsa-config.sh  
+        sudo chmod +x /home/pi/Assistants-Pi/audio-drivers/AIY-HAT/scripts/configure-driver.sh  
+        sudo /home/pi/Assistants-Pi/audio-drivers/AIY-HAT/scripts/configure-driver.sh
+        sudo chmod +x /home/pi/Assistants-Pi/audio-drivers/AIY-HAT/scripts/install-alsa-config.sh
+        sudo /home/pi/Assistants-Pi/audio-drivers/AIY-HAT/scripts/install-alsa-config.sh
         ;;
     CUSTOM-VOICE-HAT)
-        sudo chmod +x /home/pi/Assistant-Pi/audio-drivers/CUSTOM-VOICE-HAT/scripts/custom-voice-hat.sh  
-        sudo /home/pi/Assistant-Pi/audio-drivers/CUSTOM-VOICE-HAT/scripts/custom-voice-hat.sh  
-        sudo chmod +x /home/pi/Assistant-Pi/audio-drivers/CUSTOM-VOICE-HAT/scripts/install-i2s.sh  
-        sudo /home/pi/Assistant-Pi/audio-drivers/CUSTOM-VOICE-HAT/scripts/install-i2s.sh 
+        sudo chmod +x /home/pi/Assistants-Pi/audio-drivers/CUSTOM-VOICE-HAT/scripts/custom-voice-hat.sh
+        sudo /home/pi/Assistants-Pi/audio-drivers/CUSTOM-VOICE-HAT/scripts/custom-voice-hat.sh
+        sudo chmod +x /home/pi/Assistants-Pi/audio-drivers/CUSTOM-VOICE-HAT/scripts/install-i2s.sh
+        sudo /home/pi/Assistants-Pi/audio-drivers/CUSTOM-VOICE-HAT/scripts/install-i2s.sh
         ;;
     USB-MIC-ON-BOARD-JACK)
-        sudo chmod +x /home/pi/Assistant-Pi/audio-drivers/USB-MIC-JACK/scripts/usb-mic-onboard-jack.sh  
-        sudo /home/pi/Assistant-Pi/audio-drivers/USB-MIC-JACK/scripts/usb-mic-onboard-jack.sh
+        sudo chmod +x /home/pi/Assistants-Pi/audio-drivers/USB-MIC-JACK/scripts/usb-mic-onboard-jack.sh
+        sudo /home/pi/Assistants-Pi/audio-drivers/USB-MIC-JACK/scripts/usb-mic-onboard-jack.sh
         sudo amixer cset numid=3 1
         echo "Audio set to be forced through 3.5mm jack."
         ;;
     USB-MIC-HDMI)
-        sudo chmod +x /home/pi/Assistant-Pi/audio-drivers/USB-MIC-HDMI/scripts/install-usb-mic-hdmi.sh  
-        sudo /home/pi/Assistant-Pi/audio-drivers/USB-MIC-HDMI/scripts/install-usb-mic-hdmi.sh
+        sudo chmod +x /home/pi/Assistants-Pi/audio-drivers/USB-MIC-HDMI/scripts/install-usb-mic-hdmi.sh
+        sudo /home/pi/Assistants-Pi/audio-drivers/USB-MIC-HDMI/scripts/install-usb-mic-hdmi.sh
         sudo amixer cset numid=3 2
         echo "Audio set to be forced through HDMI."
         ;;
     USB-SOUND-CARD-or-DAC)
-        sudo chmod +x /home/pi/Assistant-Pi/audio-drivers/USB-DAC/scripts/install-usb-dac.sh  
-        sudo /home/pi/Assistant-Pi/audio-drivers/USB-DAC/scripts/install-usb-dac.sh 
+        sudo chmod +x /home/pi/Assistants-Pi/audio-drivers/USB-DAC/scripts/install-usb-dac.sh
+        sudo /home/pi/Assistants-Pi/audio-drivers/USB-DAC/scripts/install-usb-dac.sh
 	  ;;
 esac
-echo "" 
+echo ""
 echo "Audio configuration for $audio done."
 echo ""
 echo "========== Installing Git ============"
