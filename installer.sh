@@ -521,6 +521,7 @@ case $assistants in
 
     cd $Origin
     cd /home/pi/
+    sudo apt-get install npm -y
     echo ""
     echo '============================='
     echo '*****************************'
@@ -1028,6 +1029,7 @@ case $assistants in
 
     cd $Origin
     cd /home/pi/
+    sudo apt-get install npm -y
     echo ""
     echo '============================='
     echo '*****************************'
