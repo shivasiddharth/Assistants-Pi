@@ -567,6 +567,7 @@ case $assistants in
       sudo chmod +x /home/pi/Assistants-Pi/scripts/gassist-installer-pi3.sh
       sudo /home/pi/Assistants-Pi/scripts/snowboy-deps-installer.sh
       sudo /home/pi/Assistants-Pi/scripts/gassist-installer-pi3.sh
+      sudo apt-get install npm -y
       echo ""
       echo "Finished installing Google Assistant....."
     elif ["$USER_RESPONSE" = "$NO_ANSWER" ]; then
@@ -1051,6 +1052,7 @@ case $assistants in
       sudo chmod +x /home/pi/Assistants-Pi/scripts/gassist-installer-pi3.sh
       sudo /home/pi/Assistants-Pi/scripts/snowboy-deps-installer.sh
       sudo /home/pi/Assistants-Pi/scripts/gassist-installer-pi3.sh
+      sudo apt-get install npm -y
       echo ""
       echo "Finished installing Google Assistant....."
     elif ["$USER_RESPONSE" = "$NO_ANSWER" ]; then
