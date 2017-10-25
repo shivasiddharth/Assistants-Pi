@@ -564,9 +564,14 @@ case $assistants in
       echo "=============Starting Google Assistant Installer============="
       git clone https://github.com/shivasiddharth/GassistPi -b Gassistant-RPi
       sudo chmod +x /home/pi/Assistants-Pi/scripts/snowboy-deps-installer.sh
-      sudo chmod +x /home/pi/Assistants-Pi/scripts/gassist-installer-pi3.sh
       sudo /home/pi/Assistants-Pi/scripts/snowboy-deps-installer.sh
-      sudo /home/pi/Assistants-Pi/scripts/gassist-installer-pi3.sh
+      if [[ "$(uname -m)" == "armv7l" ]] ; then
+        sudo chmod +x /home/pi/Assistants-Pi/scripts/gassist-installer-pi3.sh
+        sudo /home/pi/Assistants-Pi/scripts/gassist-installer-pi3.sh
+      else
+        sudo chmod +x /home/pi/Assistants-Pi/scripts/gassist-installer-pi-zero.sh
+        sudo /home/pi/Assistants-Pi/scripts/gassist-installer-pi-zero.sh
+      fi
       sudo apt-get install npm -y
       echo ""
       echo "Finished installing Google Assistant....."
@@ -576,21 +581,29 @@ case $assistants in
     fi
     sudo chmod +x /home/pi/Assistants-Pi/scripts/service-installer.sh
     sudo /home/pi/Assistants-Pi/scripts/service-installer.sh
-    sudo systemctl enable gassistpi-ok-google.service
     clear
-    echo "Enabled Google Assistant service to start on boot"
-    echo "Do you want to enable custom wakeword service for Google Assistant?"
-    parse_user_input 1 1 0
-    USER_RESPONSE=$?
-    if [ "$USER_RESPONSE" = "$YES_ANSWER" ]; then
-      echo "======Enabling custom wakeword======="
+    if [[ "$(uname -m)" == "armv7l" ]] ; then
+      sudo systemctl enable gassistpi-ok-google.service
+      echo "By default, your Pi supports Google Asisstant library OK Google or Hey Google! hotword."
+      echo "Do you want to enable custom wakeword service for Google Assistant?"
+      parse_user_input 1 1 0
+      USER_RESPONSE=$?
+      if [ "$USER_RESPONSE" = "$YES_ANSWER" ]; then
+         echo "======Enabling custom wakeword======="
+         sudo systemctl enable snowboy.service
+      clear
+      fi
+      echo ""
+      if [ "$USER_RESPONSE" = "$NO_ANSWER" ]; then
+        echo "Later if you have  achange of mind, you can enable custom wakeword service by typing the following in a terminal:"
+        echo "sudo systemctl enable snowboy.service"
+      fi
+    else
+      echo "Your Pi does not support Google Asisstant library OK Google or Hey Google! hotword."
+      echo "Enabling custom wakeword service...."
       sudo systemctl enable snowboy.service
-    fi
+    fi 
     echo ""
-    if [ "$USER_RESPONSE" = "$NO_ANSWER" ]; then
-      echo "Later if you have  achange of mind, you can enable custom wakeword service by typing the following in a terminal:"
-      echo "sudo systemctl enable snowboy.service"
-    fi
     echo "Try running the google assistant demo"
     echo "Open a new terminal and execute: "
     echo "source env/bin/activate"
@@ -1049,9 +1062,14 @@ case $assistants in
       echo "=============Starting Google Assistant Installer============="
       git clone https://github.com/shivasiddharth/GassistPi -b Gassistant-RPi
       sudo chmod +x /home/pi/Assistants-Pi/scripts/snowboy-deps-installer.sh
-      sudo chmod +x /home/pi/Assistants-Pi/scripts/gassist-installer-pi3.sh
       sudo /home/pi/Assistants-Pi/scripts/snowboy-deps-installer.sh
-      sudo /home/pi/Assistants-Pi/scripts/gassist-installer-pi3.sh
+      if [[ "$(uname -m)" == "armv7l" ]] ; then
+        sudo chmod +x /home/pi/Assistants-Pi/scripts/gassist-installer-pi3.sh
+        sudo /home/pi/Assistants-Pi/scripts/gassist-installer-pi3.sh
+      else
+        sudo chmod +x /home/pi/Assistants-Pi/scripts/gassist-installer-pi-zero.sh
+        sudo /home/pi/Assistants-Pi/scripts/gassist-installer-pi-zero.sh
+      fi
       sudo apt-get install npm -y
       echo ""
       echo "Finished installing Google Assistant....."
@@ -1067,21 +1085,29 @@ case $assistants in
     sudo systemctl enable companionapp.service
     sudo systemctl enable client.service
     sudo systemctl enable wakeword.service
-    sudo systemctl enable gassistpi-ok-google.service
     clear
-    echo "Do you want to enable custom wakeword service for Google Assistant?"
-    parse_user_input 1 1 0
-    USER_RESPONSE=$?
-    if [ "$USER_RESPONSE" = "$YES_ANSWER" ]; then
-      echo "======Enabling custom wakeword======="
-      sudo systemctl enable snowboy.service
+    if [[ "$(uname -m)" == "armv7l" ]] ; then
+      sudo systemctl enable gassistpi-ok-google.service
+      echo "By default, your Pi supports Google Asisstant library OK Google or Hey Google! hotword."
+      echo "Do you want to enable custom wakeword service for Google Assistant?"
+      parse_user_input 1 1 0
+      USER_RESPONSE=$?
+      if [ "$USER_RESPONSE" = "$YES_ANSWER" ]; then
+         echo "======Enabling custom wakeword======="
+         sudo systemctl enable snowboy.service
       clear
+      fi
+      echo ""
+      if [ "$USER_RESPONSE" = "$NO_ANSWER" ]; then
+        echo "Later if you have  achange of mind, you can enable custom wakeword service by typing the following in a terminal:"
+        echo "sudo systemctl enable snowboy.service"
+      fi
+    else
+      echo "Your Pi does not support Google Asisstant library OK Google or Hey Google! hotword."
+      echo "Enabling custom wakeword service...."
+      sudo systemctl enable snowboy.service
     fi
     echo ""
-    if [ "$USER_RESPONSE" = "$NO_ANSWER" ]; then
-      echo "Later if you have  achange of mind, you can enable custom wakeword service by typing the following in a terminal:"
-      echo "sudo systemctl enable snowboy.service"
-    fi
     echo "Enabled Alexa and Google Assistant services to start on boot"
     echo ""
     echo "================Run the Alexa demo to authenticate============"
