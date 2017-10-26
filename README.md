@@ -1,4 +1,4 @@
-# Assistants-Pi---Untested not ready for public yet
+# Assistants-Pi
 **One installer for both Google Asistant and Amazon Alexa**  
 **Simultaneously run Google Assistant and Alexa on Raspberry Pi**  
 
