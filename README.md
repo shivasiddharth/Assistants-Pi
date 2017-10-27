@@ -37,7 +37,7 @@ sudo /home/pi/Assistants-Pi/prep-system.sh
 ```
 sudo reboot
 ```
-5. Test the aduio setup using:  
+5. Test the audio setup using:  
 ```
 sudo /home/pi/Assistants-Pi/audio-test.sh  
 ```
