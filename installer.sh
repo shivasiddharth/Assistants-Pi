@@ -1061,8 +1061,6 @@ case $assistants in
     if [ "$USER_RESPONSE" = "$YES_ANSWER" ]; then
       echo "=============Starting Google Assistant Installer============="
       git clone https://github.com/shivasiddharth/GassistPi -b Gassistant-RPi
-      sudo chmod +x /home/pi/Assistants-Pi/scripts/snowboy-deps-installer.sh
-      sudo /home/pi/Assistants-Pi/scripts/snowboy-deps-installer.sh
       if [[ "$(uname -m)" == "armv7l" ]] ; then
         sudo chmod +x /home/pi/Assistants-Pi/scripts/gassist-installer-pi3.sh
         sudo /home/pi/Assistants-Pi/scripts/gassist-installer-pi3.sh
@@ -1071,6 +1069,8 @@ case $assistants in
         sudo /home/pi/Assistants-Pi/scripts/gassist-installer-pi-zero.sh
       fi
       sudo apt-get install npm -y
+      sudo chmod +x /home/pi/Assistants-Pi/scripts/snowboy-deps-installer.sh
+      sudo /home/pi/Assistants-Pi/scripts/snowboy-deps-installer.sh
       echo ""
       echo "Finished installing Google Assistant....."
     elif ["$USER_RESPONSE" = "$NO_ANSWER" ]; then
