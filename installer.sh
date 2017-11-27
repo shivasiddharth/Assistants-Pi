@@ -1,5 +1,5 @@
 #!/bin/bash
-
+sudo rm home/pi/.asoundrc -y
 YES_ANSWER=1
 NO_ANSWER=2
 QUIT_ANSWER=3
