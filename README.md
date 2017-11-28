@@ -37,11 +37,27 @@ sudo /home/pi/Assistants-Pi/prep-system.sh
 ```
 sudo reboot
 ```
-5. Test the audio setup using:  
+5. Make sure that contents of asoundrc match the contents of asound.conf    
+Open a terminal and type:  
+```
+sudo nano /etc/asound.conf
+```
+Open a second terminal and type:    
+```
+sudo nano ~/.asoundrc
+```
+If the contents of .asoundrc are not same as asound.conf, copy the contents from asound.conf to .asoundrc, save using ctrl+x and y
+
+6. Test the audio setup using:  
 ```
 sudo /home/pi/Assistants-Pi/audio-test.sh  
 ```
-6. Install the assistant/assistants using the following. This is an interactive script, so just follow the onscreen instructions: 
+7. Restart the Pi using:
+```
+sudo reboot
+```
+8. Install the assistant/assistants using the following. This is an interactive script, so just follow the onscreen instructions: 
 ```
 sudo /home/pi/Assistants-Pi/installer.sh  
 ```
+ 
