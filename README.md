@@ -38,11 +38,11 @@ sudo /home/pi/Assistants-Pi/prep-system.sh
 sudo reboot
 ```
 5. Make sure that contents of asoundrc match the contents of asound.conf    
-  Open a terminal and type:  
+   Open a terminal and type:  
 ```
 sudo nano /etc/asound.conf
 ```
-  Open a second terminal and type:    
+   Open a second terminal and type:    
 ```
 sudo nano ~/.asoundrc
 ```
