@@ -601,7 +601,7 @@ case $assistants in
       echo "Your Pi does not support Google Asisstant library OK Google or Hey Google! hotword."
       echo "Enabling custom wakeword service...."
       sudo systemctl enable snowboy.service
-    fi 
+    fi
     echo ""
     echo "Try running the google assistant demo"
     echo "Open a new terminal and execute: "
@@ -1087,6 +1087,7 @@ case $assistants in
     clear
     if [[ "$(uname -m)" == "armv7l" ]] ; then
       sudo systemctl enable gassistpi-ok-google.service
+      sudo systemctl enable stopbutton.service
       echo "By default, your Pi supports Google Asisstant library OK Google or Hey Google! hotword."
       echo "Do you want to enable custom wakeword service for Google Assistant?"
       parse_user_input 1 1 0
@@ -1105,6 +1106,7 @@ case $assistants in
       echo "Your Pi does not support Google Asisstant library OK Google or Hey Google! hotword."
       echo "Enabling custom wakeword service...."
       sudo systemctl enable snowboy.service
+      sudo systemctl enable stopbutton.service
     fi
     echo ""
     echo "Enabled Alexa and Google Assistant services to start on boot"
