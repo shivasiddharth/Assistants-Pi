@@ -2,6 +2,9 @@
 **One installer for both Google Asistant and Amazon Alexa**  
 **Simultaneously run Google Assistant and Alexa on Raspberry Pi**  
 
+**Due to the 20th Dec update to Google Assistant SDK, the installation process has remarkably changed. Please Read through this document carefully**  
+**Refer to this video https://youtu.be/vprJBDDYE8Q for critical steps in Google Assistant installation**  
+
 ****************************************************************
 **Before Starting the setup**
 ****************************************************************
@@ -10,7 +13,7 @@
 
 2. Place the .json file in/home/pi directory  
 
-3. Rename it to assistant--->assistant.json 
+3. **DO NOT RENAME THE JSON FILE**
 
 **For Amazon Alexa**  
 1. Create a security profile for alexa-avs-sample-app if you already don't have one.  
@@ -56,8 +59,30 @@ sudo /home/pi/Assistants-Pi/audio-test.sh
 ```
 sudo reboot
 ```
-8. Install the assistant/assistants using the following. This is an interactive script, so just follow the onscreen instructions: 
+8. Install the assistant/assistants using the following. This is an interactive script, so just follow the onscreen instructions:
 ```
 sudo /home/pi/Assistants-Pi/installer.sh  
 ```
- 
+9. After verification of the assistants, to make them auto start on boot:  
+Pi 3 and Pi2 users, open the gassistpi-ok-google.service in the /home/pi/Assistants-Pi/systemd folder and add your project-id and model-id in the indicated points.    
+Pi Zero users, open the gassistpi-push-button.service in the /home/pi/Assistants-Pi/systemd folder and add your project-id and model-id in the indicated points.  
+After that, open a terminal and run the following commands:  
+```
+sudo chmod +x /home/pi/Assistants-Pi/scripts/service-installer.sh
+sudo chmod +x /home/pi/Assistants-Pi/scripts/clientstart.sh  
+sudo chmod +x /home/pi/Assistants-Pi/scripts/companionstart.sh  
+sudo chmod +x /home/pi/Assistants-Pi/scripts/wakeword.sh  
+sudo /home/pi/Assistants-Pi/scripts/service-installer.sh  
+sudo systemctl enable companionapp.service
+sudo systemctl enable client.service
+sudo systemctl enable wakeword.service
+sudo systemctl enable stopbutton.service
+```
+#If using Pi 2B or Pi 3B  
+```
+sudo systemctl enable gassistpi-ok-google.service  
+```
+#If using Pi zero  
+```
+sudo systemctl enable gassistpi-push-button.service  
+```

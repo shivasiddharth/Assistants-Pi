@@ -344,7 +344,7 @@ case $assistants in
     echo "======================================================="
     echo ""
     echo ""
-    select_option Locale "en-US" "en-GB" "de-DE"
+    select_option Locale "en-US" "en-GB" "de-DE" "en-CA" "en-IN" "ja-JP"
 
     Wake_Word_Detection_Enabled="true"
 
@@ -1054,14 +1054,12 @@ case $assistants in
     if [ "$Wake_Word_Detection_Enabled" = "true" ]; then
       Number_Terminals=3
     fi
-    echo "Have you downloaded the credentials file, renamed it to assistant.json and placed it in /home/pi/ directory?"
+    echo "Have you downloaded the credentials file, and placed it in /home/pi/ directory?"
     parse_user_input 1 1 0
     USER_RESPONSE=$?
     if [ "$USER_RESPONSE" = "$YES_ANSWER" ]; then
       echo "=============Starting Google Assistant Installer============="
       git clone https://github.com/shivasiddharth/GassistPi -b Gassistant-RPi
-      sudo chmod +x /home/pi/Assistants-Pi/scripts/snowboy-deps-installer.sh
-      sudo /home/pi/Assistants-Pi/scripts/snowboy-deps-installer.sh
       if [[ "$(uname -m)" == "armv7l" ]] ; then
         sudo chmod +x /home/pi/Assistants-Pi/scripts/gassist-installer-pi3.sh
         sudo /home/pi/Assistants-Pi/scripts/gassist-installer-pi3.sh
@@ -1073,43 +1071,11 @@ case $assistants in
       echo ""
       echo "Finished installing Google Assistant....."
     elif ["$USER_RESPONSE" = "$NO_ANSWER" ]; then
-      echo "Download the credentials file, rename it to assistant.json, place it in /home/pi/ directory and start the installer again.."
+      echo "Download the credentials file, , place it in /home/pi/ directory and start the installer again.."
       exit
     fi
-    sudo chmod +x /home/pi/Assistants-Pi/scripts/clientstart.sh
-    sudo chmod +x /home/pi/Assistants-Pi/scripts/companionstart.sh
-    sudo chmod +x /home/pi/Assistants-Pi/scripts/service-installer.sh
-    sudo chmod +x /home/pi/Assistants-Pi/scripts/wakeword.sh
-    sudo /home/pi/Assistants-Pi/scripts/service-installer.sh
-    sudo systemctl enable companionapp.service
-    sudo systemctl enable client.service
-    sudo systemctl enable wakeword.service
-    clear
-    if [[ "$(uname -m)" == "armv7l" ]] ; then
-      sudo systemctl enable gassistpi-ok-google.service
-      sudo systemctl enable stopbutton.service
-      echo "By default, your Pi supports Google Asisstant library OK Google or Hey Google! hotword."
-      echo "Do you want to enable custom wakeword service for Google Assistant?"
-      parse_user_input 1 1 0
-      USER_RESPONSE=$?
-      if [ "$USER_RESPONSE" = "$YES_ANSWER" ]; then
-         echo "======Enabling custom wakeword======="
-         sudo systemctl enable snowboy.service
-      clear
-      fi
-      echo ""
-      if [ "$USER_RESPONSE" = "$NO_ANSWER" ]; then
-        echo "Later if you have  achange of mind, you can enable custom wakeword service by typing the following in a terminal:"
-        echo "sudo systemctl enable snowboy.service"
-      fi
-    else
-      echo "Your Pi does not support Google Asisstant library OK Google or Hey Google! hotword."
-      echo "Enabling custom wakeword service...."
-      sudo systemctl enable snowboy.service
-      sudo systemctl enable stopbutton.service
-    fi
+
     echo ""
-    echo "Enabled Alexa and Google Assistant services to start on boot"
     echo ""
     echo "================Run the Alexa demo to authenticate============"
     echo "To run the demo, do the following in $Number_Terminals seperate terminals:"
@@ -1125,9 +1091,15 @@ case $assistants in
     echo "To run the google assistant demo"
     echo "Open a new terminal and execute: "
     echo "source env/bin/activate"
-    echo "google-assistant-demo"
+    echo "Test the installed google assistant using the following syntax. Replace 'project-id' and 'model-id'with your respective ids "
     echo ""
-    echo "After verifying the working of both, restart the Pi to start the services"
+    echo "=============================For Pi 2B and Pi 3B======================================"
+    echo "googlesamples-assistant-hotword --project_id 'project-id' --device_model_id 'model-id'"
+    echo ""
+    echo "=================================For Pi Zero=========================================="
+    echo "googlesamples-assistant-pushtotalk --project_id 'project-id' --device_model_id 'project-id'"
+    echo ""
+    echo "After that, proceed to step-9 mentioned in the README doc to set the assitsants to auto start on boot."
     exit
     ;;
 esac
