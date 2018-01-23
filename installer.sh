@@ -373,6 +373,9 @@ case $assistants in
     echo ""
 
     # Install dependencies
+    
+    echo "========== Installing Java Dependency ============"
+    sudo apt-get install dirmngr -y    
 
     echo "========== Getting the code for Kitt-Ai ==========="
     cd $Kitt_Ai_Loc
@@ -878,6 +881,9 @@ case $assistants in
     echo ""
 
     # Install dependencies
+    
+    echo "========== Installing Java Dependency ============"
+    sudo apt-get install dirmngr -y  
 
     echo "========== Getting the code for Kitt-Ai ==========="
     cd $Kitt_Ai_Loc
