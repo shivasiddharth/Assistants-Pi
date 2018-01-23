@@ -356,6 +356,10 @@ case $assistants in
     echo ""
     echo ""
     echo "=========== Installing Oracle Java8 ==========="
+    echo ""
+    echo ""
+    echo "========== Installing Java Dependency ============"
+    sudo apt-get install dirmngr -y
     echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
     chmod +x $Java_Client_Loc/install-java8.sh
     cd $Java_Client_Loc && bash ./install-java8.sh
@@ -528,23 +532,12 @@ case $assistants in
     echo '*****************************'
     echo '============================='
     echo ""
-    sudo chmod +x /home/pi/Assistants-Pi/scripts/clientstart.sh
-    sudo chmod +x /home/pi/Assistants-Pi/scripts/companionstart.sh
-    sudo chmod +x /home/pi/Assistants-Pi/scripts/service-installer.sh
-    sudo chmod +x /home/pi/Assistants-Pi/scripts/wakeword.sh
-    sudo /home/pi/Assistants-Pi/scripts/service-installer.sh
-    sudo systemctl enable companionapp.service
-    sudo systemctl enable client.service
-    sudo systemctl enable wakeword.service
-    clear
-    echo "Enabled Alexa service to start on boot"
-    echo ""
-    echo "Run the Alexa demo once to authenticate"
     echo ""
     Number_Terminals=2
     if [ "$Wake_Word_Detection_Enabled" = "true" ]; then
       Number_Terminals=3
     fi
+    echo "================Run the Alexa demo to authenticate============"
     echo "To run the demo, do the following in $Number_Terminals seperate terminals:"
     echo "Run the companion service: cd $Companion_Service_Loc && sudo npm start"
     echo "Run the AVS Java Client: cd $Java_Client_Loc && sudo mvn exec:exec"
@@ -552,7 +545,8 @@ case $assistants in
       echo "Run the wake word agent: "
       echo "  KITT_AI: cd $Wake_Word_Agent_Loc/src && sudo ./wakeWordAgent -e kitt_ai"
     fi
-    echo "After verifying the working of Alexa, restart the Pi to start the services"
+    echo ""
+    echo "After that, proceed to step-9 mentioned in the README doc to set the assitsants to auto start on boot."
     exit
     ;;
   Google-Assistant)
@@ -861,6 +855,10 @@ case $assistants in
     echo ""
     echo ""
     echo "=========== Installing Oracle Java8 ==========="
+    echo ""
+    echo ""
+    echo "========== Installing Java Dependency ============"
+    sudo apt-get install dirmngr -y
     echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
     chmod +x $Java_Client_Loc/install-java8.sh
     cd $Java_Client_Loc && bash ./install-java8.sh
@@ -878,6 +876,7 @@ case $assistants in
     echo ""
 
     # Install dependencies
+
 
     echo "========== Getting the code for Kitt-Ai ==========="
     cd $Kitt_Ai_Loc
