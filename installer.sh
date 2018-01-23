@@ -356,6 +356,10 @@ case $assistants in
     echo ""
     echo ""
     echo "=========== Installing Oracle Java8 ==========="
+    echo ""
+    echo ""
+    echo "========== Installing Java Dependency ============"
+    sudo apt-get install dirmngr -y  
     echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
     chmod +x $Java_Client_Loc/install-java8.sh
     cd $Java_Client_Loc && bash ./install-java8.sh
@@ -373,9 +377,6 @@ case $assistants in
     echo ""
 
     # Install dependencies
-    
-    echo "========== Installing Java Dependency ============"
-    sudo apt-get install dirmngr -y    
 
     echo "========== Getting the code for Kitt-Ai ==========="
     cd $Kitt_Ai_Loc
@@ -864,6 +865,10 @@ case $assistants in
     echo ""
     echo ""
     echo "=========== Installing Oracle Java8 ==========="
+    echo ""
+    echo ""
+    echo "========== Installing Java Dependency ============"
+    sudo apt-get install dirmngr -y
     echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
     chmod +x $Java_Client_Loc/install-java8.sh
     cd $Java_Client_Loc && bash ./install-java8.sh
@@ -881,9 +886,7 @@ case $assistants in
     echo ""
 
     # Install dependencies
-    
-    echo "========== Installing Java Dependency ============"
-    sudo apt-get install dirmngr -y  
+
 
     echo "========== Getting the code for Kitt-Ai ==========="
     cd $Kitt_Ai_Loc
