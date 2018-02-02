@@ -8,6 +8,7 @@
 **Due to the 20th Dec update to Google Assistant SDK, the installation process has remarkably changed. Please Read through this document carefully**  
 **Refer to this video https://youtu.be/vprJBDDYE8Q for critical steps in Google Assistant installation**  
 
+**The Google Assistant Component used in this project is the GassistPi project. So for 'Customization Preliminary Setups and How-Tos' check this [out](https://github.com/shivasiddharth/GassistPi/blob/master/README.md#using-the-customizations)
 ****************************************************************
 **Before Starting the setup**
 ****************************************************************
