@@ -5,13 +5,6 @@
 ### **If you like the work, find it useful and if you would like to get me a :coffee: :smile:** [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7GH3YDCHZ36QN)  
 
 *******************************************************************************************************************************
-## 28th-Jan-2018 Update: Google Assistant updated with Chromecast-ing Feature and Media Volume Control Features    
-
-### Existing users on the latest Google Assistant SDK can update their GA features using:   
-https://github.com/shivasiddharth/GassistPi/blob/update-script/GassistPi-Update-Script.sh
-
-### New users, continue as instructed below in the README doc.
-*******************************************************************************************************************************
 **Due to the 20th Dec update to Google Assistant SDK, the installation process has remarkably changed. Please Read through this document carefully**  
 **Refer to this video https://youtu.be/vprJBDDYE8Q for critical steps in Google Assistant installation**  
 
