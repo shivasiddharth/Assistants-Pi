@@ -91,7 +91,7 @@ sudo systemctl enable gassistpi-ok-google.service
 ```
 sudo systemctl enable gassistpi-push-button.service  
 ```
-### MANUALLY START THE ASSISTANT
+### Manually Start The Google Assistant
 
 At any point of time, if you wish to manually start the assistant:
 
