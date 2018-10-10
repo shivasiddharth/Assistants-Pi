@@ -5,8 +5,8 @@
 ### **If you like the work, find it useful and if you would like to get me a :coffee: :smile:** [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7GH3YDCHZ36QN)  
 
 *******************************************************************************************************************************
-### Note:  
-**This Git was using avs-sample-app and Google Assistant SDK. As Amazon's support for avs-sample-app has been put under maintenance, I am having this Git also under maintanance. This will be back up soon incorporating AVS Device SDK and Google Assistant SDK **   
+### Note 10/10/2018:  
+**This Git was using avs-sample-app and Google Assistant SDK. As Amazon's support for avs-sample-app has been put under maintenance, I am having this Git also under maintanance. This will be back up soon incorporating AVS Device SDK and Google Assistant SDK**   
 
 ****************************************************************
 **Before Starting the setup**
