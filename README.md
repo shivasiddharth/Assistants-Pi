@@ -6,10 +6,8 @@
 
 *******************************************************************************************************************************
 ### Note:  
-**Due to the 20th Dec update to Google Assistant SDK, the installation process has remarkably changed. Please Read through this document carefully**  
-**Refer to this video https://youtu.be/vprJBDDYE8Q for critical steps in Google Assistant installation** 
+**This Git was using avs-sample-app and Google Assistant SDK. As Amazon's support for avs-sample-app has been put under maintenance, I am having this Git also under maintanance. This will be back up soon incorporating AVS Device SDK and Google Assistant SDK **   
 
-**The Google Assistant Component used in this project is the GassistPi project. So for 'Preliminary Setups for the customizations and respective How-Tos' check this [out](https://github.com/shivasiddharth/GassistPi/blob/master/README.md#using-the-customizations)**  
 ****************************************************************
 **Before Starting the setup**
 ****************************************************************
