@@ -5,9 +5,10 @@
 ### **If you like the work, find it useful and if you would like to get me a :coffee: :smile:** [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7GH3YDCHZ36QN)  
 
 *******************************************************************************************************************************
-### Note 10/10/2018:  
-**This Git was using avs-sample-app and Google Assistant SDK. As Amazon's support for avs-sample-app has been put under maintenance, I am having this Git also under maintanance. This will be back up soon incorporating AVS Device SDK and Google Assistant SDK**   
+### Note:
+**13/10/2018: The project has migrated from alexa-avs-sample-app to the Alexa AVS SDK. So pre-existing issues have been closed.**  
 
+**The Google Assistant Component used in this project is the GassistPi project. So for 'Preliminary Setups for the customizations and respective How-Tos' check this [out](https://github.com/shivasiddharth/GassistPi/blob/master/README.md#using-the-customizations)**  
 ****************************************************************
 **Before Starting the setup**
 ****************************************************************
@@ -20,7 +21,7 @@
 
 **For Amazon Alexa**  
 1. Create a security profile for alexa-avs-sample-app if you already don't have one.  
-https://github.com/alexa/alexa-avs-sample-app/wiki/Create-Security-Profile
+https://github.com/alexa/avs-device-sdk/wiki/Create-Security-Profile  
 
 ***************************************************************
 **Setup Amazon Alexa, Google Assistant or Both**     
@@ -31,13 +32,13 @@ git clone https://github.com/shivasiddharth/Assistants-Pi
 ```
 2. Make the installers executable using:
 ```
-sudo chmod +x /home/pi/Assistants-Pi/prep-system.sh    
-sudo chmod +x /home/pi/Assistants-Pi/audio-test.sh   
-sudo chmod +x /home/pi/Assistants-Pi/installer.sh  
+sudo chmod +x /home/pi/Assistants-Pi/scripts/prep-system.sh    
+sudo chmod +x /home/pi/Assistants-Pi/scripts/audio-test.sh   
+sudo chmod +x /home/pi/Assistants-Pi/scripts/installer.sh  
 ```
 3. Prepare the system for installing assistants by updating, upgrading and setting up audio using:  
 ```
-sudo /home/pi/Assistants-Pi/prep-system.sh
+sudo /home/pi/Assistants-Pi/scripts/prep-system.sh
 ```
 4. Restart the Pi using:
 ```
@@ -56,7 +57,7 @@ If the contents of .asoundrc are not same as asound.conf, copy the contents from
 
 6. Test the audio setup using:  
 ```
-sudo /home/pi/Assistants-Pi/audio-test.sh  
+sudo /home/pi/Assistants-Pi/scripts/audio-test.sh  
 ```
 7. Restart the Pi using:
 ```
@@ -64,7 +65,7 @@ sudo reboot
 ```
 8. Install the assistant/assistants using the following. This is an interactive script, so just follow the onscreen instructions:
 ```
-sudo /home/pi/Assistants-Pi/installer.sh  
+sudo /home/pi/Assistants-Pi/scripts/installer.sh  
 ```
 9. After verification of the assistants, to make them auto start on boot:  
 Pi 3 and Pi2 users, open the gassistpi-ok-google.service in the /home/pi/Assistants-Pi/systemd folder and add your project-id and model-id in the indicated points.    
@@ -72,14 +73,9 @@ Pi Zero users, open the gassistpi-push-button.service in the /home/pi/Assistants
 After that, open a terminal and run the following commands:  
 ```
 sudo chmod +x /home/pi/Assistants-Pi/scripts/service-installer.sh
-sudo chmod +x /home/pi/Assistants-Pi/scripts/clientstart.sh  
-sudo chmod +x /home/pi/Assistants-Pi/scripts/companionstart.sh  
-sudo chmod +x /home/pi/Assistants-Pi/scripts/wakeword.sh  
+sudo chmod +x /home/pi/Assistants-Pi/Alexa/alexa.sh  
 sudo /home/pi/Assistants-Pi/scripts/service-installer.sh  
-sudo systemctl enable companionapp.service
-sudo systemctl enable client.service
-sudo systemctl enable wakeword.service
-sudo systemctl enable stopbutton.service
+sudo systemctl enable alexa.service
 ```
 #If using Pi 2B or Pi 3B  
 ```

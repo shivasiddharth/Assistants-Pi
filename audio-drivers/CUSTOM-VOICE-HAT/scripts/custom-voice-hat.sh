@@ -11,8 +11,9 @@ fi
 
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 
-asoundrc=/home/pi/.asoundrc
+asoundrc=/home/${SUDO_USER}/.asoundrc
 global_asoundrc=/etc/asound.conf
+audioconfig=/home/${SUDO_USER}/audiosetup
 
 for rcfile in "$asoundrc" "$global_asoundrc"; do
   if [[ -f "$rcfile" ]] ; then
@@ -21,5 +22,12 @@ for rcfile in "$asoundrc" "$global_asoundrc"; do
   fi
 done
 
+if [ -f $audioconfig ] ; then
+    sudo rm $audioconfig
+fi
+
+echo 'CUSTOM-VOICE-HAT' >> $audioconfig
+
 sudo cp scripts/asound.conf "$global_asoundrc"
+sudo cp scripts/.asoundrc "$asoundrc"
 echo "Installing CUSTOM Voice HAT config"

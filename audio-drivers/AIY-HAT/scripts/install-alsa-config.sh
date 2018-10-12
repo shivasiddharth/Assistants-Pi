@@ -25,8 +25,9 @@ fi
 
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 
-asoundrc=/home/pi/.asoundrc
+asoundrc=/home/${SUDO_USER}/.asoundrc
 global_asoundrc=/etc/asound.conf
+audioconfig=/home/${SUDO_USER}/audiosetup
 
 for rcfile in "$asoundrc" "$global_asoundrc"; do
   if [[ -f "$rcfile" ]] ; then
@@ -35,6 +36,12 @@ for rcfile in "$asoundrc" "$global_asoundrc"; do
   fi
 done
 
-sudo cp scripts/asound.conf "$global_asoundrc"
-echo "Installed voiceHAT ALSA config at $global_asoundrc"
+if [ -f $audioconfig ] ; then
+    sudo rm $audioconfig
+fi
 
+echo 'AIY-HAT' >> $audioconfig
+
+sudo cp scripts/asound.conf "$global_asoundrc"
+sudo cp scripts/.asoundrc "$asoundrc"
+echo "Installed voiceHAT ALSA config at $global_asoundrc"
