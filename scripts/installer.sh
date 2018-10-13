@@ -125,11 +125,11 @@ case $assistants in
     echo "=============Starting Google Assistant Installer============="
     git clone https://github.com/shivasiddharth/GassistPi
     if [[ "$(uname -m)" == "armv7l" ]] ; then
-      sudo chmod +x /home/{$USER}/GassistPi/scripts/gassist-installer-pi3.sh
-      sudo /home/{$USER}/GassistPi/scripts/gassist-installer-pi3.sh
+      sudo chmod +x /home/${USER}/GassistPi/scripts/gassist-installer-pi3.sh
+      sudo /home/${USER}/GassistPi/scripts/gassist-installer-pi3.sh
     else
-      sudo chmod +x /home/{$USER}/GassistPi/scripts/gassist-installer-pi-zero.sh
-      sudo /home/{$USER}/GassistPi/scripts/gassist-installer-pi-zero.sh
+      sudo chmod +x /home/${USER}/GassistPi/scripts/gassist-installer-pi-zero.sh
+      sudo /home/${USER}/GassistPi/scripts/gassist-installer-pi-zero.sh
     fi
     echo ""
     echo "Finished installing Google Assistant....."
@@ -164,11 +164,11 @@ case $assistants in
     echo "=============Starting Google Assistant Installer============="
     git clone https://github.com/shivasiddharth/GassistPi
     if [[ "$(uname -m)" == "armv7l" ]] ; then
-      sudo chmod +x /home/{$USER}/GassistPi/scripts/gassist-installer-pi3.sh
-      sudo /home/{$USER}/GassistPi/scripts/gassist-installer-pi3.sh
+      sudo chmod +x /home/${USER}/GassistPi/scripts/gassist-installer-pi3.sh
+      sudo /home/${USER}/GassistPi/scripts/gassist-installer-pi3.sh
     else
-      sudo chmod +x /home/{$USER}/GassistPi/scripts/gassist-installer-pi-zero.sh
-      sudo /home/{$USER}/GassistPi/scripts/gassist-installer-pi-zero.sh
+      sudo chmod +x /home/${USER}/GassistPi/scripts/gassist-installer-pi-zero.sh
+      sudo /home/${USER}/GassistPi/scripts/gassist-installer-pi-zero.sh
     fi
     echo ""
     echo "Finished installing Google Assistant....."
