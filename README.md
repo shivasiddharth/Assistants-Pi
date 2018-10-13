@@ -94,7 +94,11 @@ sudo systemctl enable alexa.service
 ```
 For Google Assistant:  
 ```
-sudo systemctl enable gassistpi-push-button.service 
+sudo systemctl enable gassistpi-push-button.service
+```
+10. Authorize Alexa before restarting  
+```
+sudo /home/pi/Assistants-Pi/Alexa/startsample.sh  
 ```
 
 ### Manually Start The Google Assistant

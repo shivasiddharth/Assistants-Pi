@@ -116,9 +116,6 @@ case $assistants in
   clear
   echo "========================Testing Alexa Installation========================"
   sudo ./test.sh
-  clear
-  echo "========================Running Alexa Sample========================"
-  sudo ./startsample.sh
   echo "========================Finished Installing Amazon Alexa========================"
   ;;
   Google-Assistant)
@@ -157,9 +154,6 @@ case $assistants in
   clear
   echo "========================Testing Alexa Installation========================"
   sudo ./test.sh
-  clear
-  echo "========================Running Alexa Sample========================"
-  sudo ./startsample.sh
   echo "Finished Installing Alexa. Proceeding to install Google Assistant"
   echo ""
   echo "Have you downloaded the credentials file, and placed it in /home/pi/ directory?"
