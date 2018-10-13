@@ -66,25 +66,37 @@ sudo reboot
 8. Install the assistant/assistants using the following. This is an interactive script, so just follow the onscreen instructions:
 ```
 sudo /home/pi/Assistants-Pi/scripts/installer.sh  
-```
+```  
 9. After verification of the assistants, to make them auto start on boot:  
 Pi 3 and Pi2 users, open the gassistpi-ok-google.service in the /home/pi/Assistants-Pi/systemd folder and add your project-id and model-id in the indicated points.    
+
 Pi Zero users, open the gassistpi-push-button.service in the /home/pi/Assistants-Pi/systemd folder and add your project-id and model-id in the indicated points.  
+
 After that, open a terminal and run the following commands:  
 ```
 sudo chmod +x /home/pi/Assistants-Pi/scripts/service-installer.sh
 sudo chmod +x /home/pi/Assistants-Pi/Alexa/alexa.sh  
 sudo /home/pi/Assistants-Pi/scripts/service-installer.sh  
-sudo systemctl enable alexa.service
 ```
 #If using Pi 2B or Pi 3B  
+For Alexa:  
+```
+sudo systemctl enable alexa.service  
+```
+For Google Assistant:  
 ```
 sudo systemctl enable gassistpi-ok-google.service  
 ```
 #If using Pi zero  
+For Alexa:  
 ```
-sudo systemctl enable gassistpi-push-button.service  
+sudo systemctl enable alexa.service  
 ```
+For Google Assistant:  
+```
+sudo systemctl enable gassistpi-push-button.service 
+```
+
 ### Manually Start The Google Assistant
 
 At any point of time, if you wish to manually start the assistant:
