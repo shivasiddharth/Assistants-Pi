@@ -9,8 +9,8 @@ GIT_DIR="$(realpath $(dirname ${BASH_SOURCE[0]})/..)"
 RUN_AS="$(ls -ld "$scripts_dir" | awk 'NR==1 {print $3}')"
 if [ "$USER" != "$RUN_AS" ]
 then
-    echo "This script must run as $RUN_AS, trying to change user..."
-    exec sudo -u $RUN_AS $0
+  echo "This script must run as $RUN_AS, trying to change user..."
+  exec sudo -u $RUN_AS $0
 fi
 clear
 
@@ -112,7 +112,7 @@ case $assistants in
   sudo chmod +x ./pi.sh
   sudo ./setup.sh
   echo "========================Finished Installing Amazon Alexa========================"
-    ;;
+  ;;
   Google-Assistant)
   echo "Have you downloaded the credentials file, and placed it in /home/pi/ directory?"
   parse_user_input 1 1 0
@@ -138,7 +138,7 @@ case $assistants in
   echo ""
   echo "After that, proceed to step-9 mentioned in the README doc to set the assitsants to auto start on boot."
   exit
-    ;;
+  ;;
   Both)
   cd ${GIT_DIR}/Alexa/
   sudo chmod +x ./setup.sh
@@ -167,5 +167,9 @@ case $assistants in
     echo "Finished installing Google Assistant....."
     echo ""
     echo "After that, proceed to step-9 mentioned in the README doc to set the assitsants to auto start on boot."
-    ;;
+  elif ["$USER_RESPONSE" = "$NO_ANSWER" ]; then
+    echo "Download the credentials file, , place it in /home/pi/ directory and start the installer again.."
+    exit
+  fi
+  ;;
 esac

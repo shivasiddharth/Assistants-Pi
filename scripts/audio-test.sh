@@ -8,8 +8,8 @@ GIT_DIR="$(realpath $(dirname ${BASH_SOURCE[0]})/..)"
 RUN_AS="$(ls -ld "$scripts_dir" | awk 'NR==1 {print $3}')"
 if [ "$USER" != "$RUN_AS" ]
 then
-    echo "This script must run as $RUN_AS, trying to change user..."
-    exec sudo -u $RUN_AS $0
+  echo "This script must run as $RUN_AS, trying to change user..."
+  exec sudo -u $RUN_AS $0
 fi
 clear
 
@@ -61,31 +61,31 @@ select_option()
   local _result=$1
   local ARGS=("$@")
   if [ "$#" -gt 0 ]; then
-      while [ true ]; do
-         local count=1
-         for option in "${ARGS[@]:1}"; do
-            echo "$count) $option"
-            ((count+=1))
-         done
-         echo ""
-         local USER_RESPONSE
-         read -p "Please select an option [1-$(($#-1))] " USER_RESPONSE
-         case $USER_RESPONSE in
-             ''|*[!0-9]*) echo "Please provide a valid number"
-                          continue
-                          ;;
-             *) if [[ "$USER_RESPONSE" -gt 0 && $((USER_RESPONSE+1)) -le "$#" ]]; then
-                    local SELECTION=${ARGS[($USER_RESPONSE)]}
-                    echo "Selection: $SELECTION"
-                    eval $_result=\$SELECTION
-                    return
-                else
-                    clear
-                    echo "Please select a valid option"
-                fi
-                ;;
-         esac
+    while [ true ]; do
+      local count=1
+      for option in "${ARGS[@]:1}"; do
+        echo "$count) $option"
+        ((count+=1))
       done
+      echo ""
+      local USER_RESPONSE
+      read -p "Please select an option [1-$(($#-1))] " USER_RESPONSE
+      case $USER_RESPONSE in
+        ''|*[!0-9]*) echo "Please provide a valid number"
+        continue
+        ;;
+        *) if [[ "$USER_RESPONSE" -gt 0 && $((USER_RESPONSE+1)) -le "$#" ]]; then
+          local SELECTION=${ARGS[($USER_RESPONSE)]}
+          echo "Selection: $SELECTION"
+          eval $_result=\$SELECTION
+          return
+        else
+          clear
+          echo "Please select a valid option"
+        fi
+        ;;
+      esac
+    done
   fi
 }
 
@@ -94,15 +94,15 @@ echo "First let's test the speaker output. Are you ready?"
 parse_user_input 1 1 0
 USER_RESPONSE=$?
 if [ "$USER_RESPONSE" = "$YES_ANSWER" ]; then
-   echo ""
-   echo ""
-   echo "=============Testing Speaker output============="
-   speaker-test -t wav -l 2
+  echo ""
+  echo ""
+  echo "=============Testing Speaker output============="
+  speaker-test -t wav -l 2
 fi
 echo ""
 echo ""
 if [ "$USER_RESPONSE" = "$NO_ANSWER" ]; then
-   exit
+  exit
 fi
 echo "Did you hear the audio from speaker?"
 parse_user_input 1 1 0
