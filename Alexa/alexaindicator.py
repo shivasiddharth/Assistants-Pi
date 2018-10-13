@@ -17,8 +17,6 @@ except ImportError:
 
 audiosetup=''
 
-
-    
 USER_PATH = os.path.realpath(os.path.join(__file__, '..', '..','..'))
 
 with open('{}/Assistants-Pi/Alexa/config.yaml'.format(USER_PATH),'r') as conf:

@@ -24,13 +24,9 @@ def run_command(command):
                 subprocess.Popen(["aplay", "{}/Assistants-Pi/sample-audio-files/Fb.wav".format(USER_PATH)], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 assistantindicator('listening')
             if "speaking" in str(output.strip()).lower():
-                assistantindicator('speaking')                
+                assistantindicator('speaking')
             if "idle!" in str(output.strip().lower()):
-                assistantindicator('off')
-                
-            
-            
-                
+                assistantindicator('off')                
     rc = process.poll()
     return rc
 

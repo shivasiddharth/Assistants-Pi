@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Environment=PATH=/home/__USER__/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-ExecStart=/bin/bash /home/__USER__/Assistants-Pi/Alexa/alexa.sh
+ExecStart=/usr/bin/python -u /home/__USER__/Assistants-Pi/Alexa/alexa.py
 WorkingDirectory=/home/__USER__/
 StandardOutput=tty,
 StandardError=tty
