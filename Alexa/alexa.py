@@ -17,11 +17,20 @@ def run_command(command):
             break
         if output:
             print(output.strip())
-            if "listen" in str(output.strip()).lower():
+            if "authorized" in str(output.strip()).lower():
+                subprocess.Popen(["aplay", "{}/Assistants-Pi/sample-audio-files/Startup.wav".format(USER_PATH)], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                assistantindicator('off')
+            if "AudioInputProcessor:setState:from=IDLE,to=RECOGNIZING" in str(output.strip()):
                 subprocess.Popen(["aplay", "{}/Assistants-Pi/sample-audio-files/Fb.wav".format(USER_PATH)], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 assistantindicator('listening')
-            if "idle" in str(output.strip()).lower():
+            if "speaking" in str(output.strip()).lower():
+                assistantindicator('speaking')                
+            if "idle!" in str(output.strip().lower()):
                 assistantindicator('off')
+                
+            
+            
+                
     rc = process.poll()
     return rc
 

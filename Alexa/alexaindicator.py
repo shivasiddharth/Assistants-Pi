@@ -3,11 +3,11 @@
 import RPi.GPIO as GPIO
 import time
 import os
-from actions import configuration
 import apa102
 import time
 import threading
 import numpy
+import yaml
 from gpiozero import LED
 try:
     import queue as Queue
@@ -17,7 +17,12 @@ except ImportError:
 
 audiosetup=''
 
+
+    
 USER_PATH = os.path.realpath(os.path.join(__file__, '..', '..','..'))
+
+with open('{}/Assistants-Pi/Alexa/config.yaml'.format(USER_PATH),'r') as conf:
+    configuration = yaml.load(conf)
 
 if os.path.isfile("{}/audiosetup".format(USER_PATH)):
     with open('{}/audiosetup'.format(USER_PATH)) as f:
@@ -45,10 +50,6 @@ aiyindicator=configuration['Gpios']['AIY_indicator'][0]
 listeningindicator=configuration['Gpios']['assistant_indicators'][0]
 speakingindicator=configuration['Gpios']['assistant_indicators'][1]
 
-#Stopbutton
-stoppushbutton=configuration['Gpios']['stopbutton_music_AIY_pushbutton'][0]
-GPIO.setup(stoppushbutton, GPIO.IN, pull_up_down = GPIO.PUD_UP)
-GPIO.add_event_detect(stoppushbutton,GPIO.FALLING)
 
 if (audiosetup=='AIY'):
     GPIO.setup(aiyindicator, GPIO.OUT)
@@ -120,7 +121,7 @@ class AlexaLedPattern(object):
 
 class Pixels4mic:
     PIXELS_N = 12
-    def __init__(self, pattern=GoogleHomeLedPattern):
+    def __init__(self, pattern=AlexaLedPattern):
         self.pattern = pattern(show=self.show)
         self.dev = apa102.APA102(num_led=self.PIXELS_N)
         self.power = LED(5)
@@ -298,6 +299,7 @@ def assistantindicator(activity):
             GPIO.output(listeningindicator,GPIO.LOW)
         elif (audiosetup=='R2M' or audiosetup=='R4M'):
             pixels.off()
+            AlexaLedPattern.stop=True
         elif (audiosetup=='AIY'):
             led.ChangeDutyCycle(0)
     elif (activity=='on' or activity=='mute'):
