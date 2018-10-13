@@ -1,5 +1,4 @@
 #!/bin/bash
-set -o errexit
 
 scripts_dir="$(dirname "${BASH_SOURCE[0]}")"
 GIT_DIR="$(realpath $(dirname ${BASH_SOURCE[0]})/..)"
