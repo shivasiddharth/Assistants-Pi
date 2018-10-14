@@ -297,7 +297,6 @@ def assistantindicator(activity):
             GPIO.output(listeningindicator,GPIO.LOW)
         elif (audiosetup=='R2M' or audiosetup=='R4M'):
             pixels.off()
-            AlexaLedPattern.stop=True
         elif (audiosetup=='AIY'):
             led.ChangeDutyCycle(0)
     elif (activity=='on' or activity=='mute'):

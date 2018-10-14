@@ -23,10 +23,10 @@ def run_command(command):
             if "AudioInputProcessor:setState:from=IDLE,to=RECOGNIZING" in str(output.strip()):
                 subprocess.Popen(["aplay", "{}/Assistants-Pi/sample-audio-files/Fb.wav".format(USER_PATH)], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 assistantindicator('listening')
-            if "speaking" in str(output.strip()).lower():
+            if "speaking..." in str(output.strip()).lower():
                 assistantindicator('speaking')
-            if "idle!" in str(output.strip().lower()):
-                assistantindicator('off')                
+            if "idle!" in str(output.strip().lower()) or "SPEAKING,to=IDLE" in str(output.strip()):
+                assistantindicator('off')
     rc = process.poll()
     return rc
 
