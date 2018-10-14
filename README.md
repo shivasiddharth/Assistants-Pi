@@ -75,7 +75,6 @@ Pi Zero users, open the gassistpi-push-button.service in the /home/pi/Assistants
 After that, open a terminal and run the following commands:  
 ```
 sudo chmod +x /home/pi/Assistants-Pi/scripts/service-installer.sh
-sudo chmod +x /home/pi/Assistants-Pi/Alexa/alexa.sh  
 sudo /home/pi/Assistants-Pi/scripts/service-installer.sh  
 ```
 #If using Pi 2B or Pi 3B  
