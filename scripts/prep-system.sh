@@ -81,7 +81,7 @@ case $audio in
         echo "Audio set to be forced through 3.5mm jack."
         ;;
     USB-MIC-HDMI)
-        sudo chmod +x /home/${USER}/Assistants-Pi/audio-drivers/USB-MIC-HDMI/scripts/co0nfigure.sh
+        sudo chmod +x /home/${USER}/Assistants-Pi/audio-drivers/USB-MIC-HDMI/scripts/configure.sh
         sudo /home/${USER}/Assistants-Pi/audio-drivers/USB-MIC-HDMI/scripts/configure.sh
         sudo chmod +x /home/${USER}/Assistants-Pi/audio-drivers/USB-MIC-HDMI/scripts/install-usb-mic-hdmi.sh
         sudo /home/${USER}/Assistants-Pi/audio-drivers/USB-MIC-HDMI/scripts/install-usb-mic-hdmi.sh
