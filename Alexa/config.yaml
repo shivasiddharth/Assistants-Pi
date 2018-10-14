@@ -1,0 +1,11 @@
+
+
+#GPIOS used in the project. Feel free to change in case.
+Gpios:
+  AIY_indicator:
+    - 25
+  assistant_indicators:
+    - 05
+    - 06
+
+
