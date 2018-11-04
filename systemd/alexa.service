@@ -3,13 +3,13 @@ Description=Companion Service
 After=network.target
 
 [Service]
-Environment=PATH=/home/__USER__/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-ExecStart=/usr/bin/python -u /home/__USER__/Assistants-Pi/Alexa/alexa.py
-WorkingDirectory=/home/__USER__/
+Environment=PATH=/home/${USER}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ExecStart=/usr/bin/python -u /home/${USER}/Assistants-Pi/Alexa/alexa.py
+WorkingDirectory=/home/${USER}/
 StandardOutput=tty,
 StandardError=tty
 Restart=always
-User=__USER__
+User=${USER}
 
 [Install]
 WantedBy=multi-user.target
