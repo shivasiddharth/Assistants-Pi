@@ -55,6 +55,7 @@ echo ""
 echo "========== Installing Git ============"
 sudo apt-get install -y git
 echo ""
+
 echo ""
 echo "===============Changing username in service files==========="
 sed -i 's/__USER__/'${USER}'/g' /home/${USER}/Assistants-Pi/systemd/diyHue.service
@@ -63,7 +64,18 @@ sed -i 's/__USER__/'${USER}'/g' /home/${USER}/Assistants-Pi/systemd/gassistpi-ok
 sed -i 's/__USER__/'${USER}'/g' /home/${USER}/Assistants-Pi/systemd/gassistpi-push-button.service
 echo ""
 echo ""
-echo "=======Select your audio and mic configuration======="
+echo "========== Installing Basic Requisites ============"
+sudo pip install pyyaml
+pip install pyyaml
+sudo pip install spidev
+pip install spidev
+sudo pip install gpiozero
+pip install gpiozero
+sudo pip install numpy
+pip install numpy
+echo ""
+echo ""
+echo "Select your audio and mic configuration: "
 select_option audio AIY-HAT CUSTOM-VOICE-HAT USB-MIC-ON-BOARD-JACK USB-MIC-HDMI USB-SOUND-CARD-or-DAC RESPEAKER-HAT
 echo ""
 echo "You have chosen to use $audio audio configuration"

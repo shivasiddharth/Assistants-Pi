@@ -6,7 +6,7 @@
 
 *******************************************************************************************************************************
 ### Note:
-**13/10/2018: The project has migrated from alexa-avs-sample-app to the Alexa AVS SDK. So pre-existing issues have been closed.**  
+**13/10/2018: The project has migrated from alexa-avs-sample-app to the Alexa AVS SDK. So pre-existing issues have been closed. Have added indicators and audio prompts for Alexa.**  
 
 **The Google Assistant Component used in this project is the GassistPi project. So for 'Preliminary Setups for the customizations and respective How-Tos' check this [out](https://github.com/shivasiddharth/GassistPi/blob/master/README.md#using-the-customizations)**  
 ****************************************************************
@@ -75,7 +75,6 @@ Pi Zero users, open the gassistpi-push-button.service in the /home/pi/Assistants
 After that, open a terminal and run the following commands:  
 ```
 sudo chmod +x /home/pi/Assistants-Pi/scripts/service-installer.sh
-sudo chmod +x /home/pi/Assistants-Pi/Alexa/alexa.sh  
 sudo /home/pi/Assistants-Pi/scripts/service-installer.sh  
 ```
 #If using Pi 2B or Pi 3B  
