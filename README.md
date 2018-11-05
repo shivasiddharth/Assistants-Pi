@@ -76,6 +76,9 @@ After that, open a terminal and run the following commands:
 ```
 sudo chmod +x /home/pi/Assistants-Pi/scripts/service-installer.sh
 sudo chmod +x /home/pi/Assistants-Pi/Alexa/alexa.sh  
+```   
+Open the service files in "/Assistants-Pi/systemd/" folder and change instances of ```__USER__``` to your Pi's username. Save the files and execute the following command.  
+```
 sudo /home/pi/Assistants-Pi/scripts/service-installer.sh  
 ```
 #If using Pi 2B or Pi 3B  
