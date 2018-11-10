@@ -123,6 +123,7 @@ case $assistants in
   USER_RESPONSE=$?
   if [ "$USER_RESPONSE" = "$YES_ANSWER" ]; then
     echo "=============Starting Google Assistant Installer============="
+    cd /home/${USER}/
     git clone https://github.com/shivasiddharth/GassistPi
     if [[ "$(uname -m)" == "armv7l" ]] ; then
       sudo chmod +x /home/${USER}/GassistPi/scripts/gassist-installer-pi3.sh
@@ -162,6 +163,7 @@ case $assistants in
   USER_RESPONSE=$?
   if [ "$USER_RESPONSE" = "$YES_ANSWER" ]; then
     echo "=============Starting Google Assistant Installer============="
+    cd /home/${USER}/
     git clone https://github.com/shivasiddharth/GassistPi
     if [[ "$(uname -m)" == "armv7l" ]] ; then
       sudo chmod +x /home/${USER}/GassistPi/scripts/gassist-installer-pi3.sh
