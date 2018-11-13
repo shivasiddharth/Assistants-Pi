@@ -1,6 +1,6 @@
 # Assistants-Pi
-## One installer for both Google Asistant and Amazon Alexa   
-## Simultaneously run Google Assistant and Alexa on Raspberry Pi    
+## One installer for Google Asistant, Amazon Alexa  and Mycroft 
+## Simultaneously run Google Assistant, Alexa and Mycroft on Raspberry Pi    
 *******************************************************************************************************************************
 ### **If you like the work, find it useful and if you would like to get me a :coffee: :smile:** [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7GH3YDCHZ36QN)  
 
