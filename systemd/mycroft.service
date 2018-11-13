@@ -1,11 +1,10 @@
 [Unit]
-Description=Alexa Voice Service
-Wants=network-online.target
+Description=Mycroft Assistant
 After=network.target
 
 [Service]
 Environment=PATH=/home/__USER__/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-ExecStart=/usr/bin/python -u /home/__USER__/Assistants-Pi/Alexa/alexa.py
+ExecStart=/bin/bash /home/__USER__/Assistants-Pi/Mycroft/mycroftstart.sh
 WorkingDirectory=/home/__USER__/
 StandardOutput=tty,
 StandardError=tty

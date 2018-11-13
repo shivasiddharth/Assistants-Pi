@@ -13,6 +13,15 @@ then
 fi
 clear
 
+sed -i 's/__USER__/'${USER}'/g' ${GIT_DIR}/systemd/alexa.service
+
+sed -i 's/__USER__/'${USER}'/g' ${GIT_DIR}/systemd/mycroft.service
+
+sed -i 's/__USER__/'${USER}'/g' ${GIT_DIR}/systemd/gassistpi-ok-google.service
+
+sed -i 's/__USER__/'${USER}'/g' ${GIT_DIR}/systemd/gassistpi-push-button.service
+
+
 YES_ANSWER=1
 NO_ANSWER=2
 QUIT_ANSWER=3
@@ -94,10 +103,10 @@ clear
 echo "=============Starting Assistant Installer=============="
 echo ""
 echo "From the list below, choose your option for installation: "
-select_option assistants Google-Assistant Alexa Both
+select_option assistants Google-Assistant Alexa Mycroft All
 echo ""
-if [ "$assistants" = "Both" ]; then
-  echo "You have chosen to install both Google Assistant and Alexa"
+if [ "$assistants" = "All" ]; then
+  echo "You have chosen to install all the assistants, Google Assistant, Alexa and Mycroft"
 else
   echo "You have chosen to install $assistants"
 fi
@@ -112,10 +121,13 @@ case $assistants in
   sudo ./setup.sh
   sudo chmod +x ./test.sh
   sudo chmod +x ./startsample.sh
-  clear
+  echo ""
+  echo ""
   echo "========================Testing Alexa Installation========================"
   sudo ./test.sh
   echo "========================Finished Installing Amazon Alexa========================"
+  echo ""
+  echo "After that, proceed to step-9 mentioned in the README doc to set the assitsant to auto start on boot."
   ;;
   Google-Assistant)
   echo "Have you downloaded the credentials file, and placed it in /home/pi/ directory?"
@@ -144,17 +156,41 @@ case $assistants in
   echo "After that, proceed to step-9 mentioned in the README doc to set the assitsants to auto start on boot."
   exit
   ;;
-  Both)
+  Mycroft)
+  echo ""
+  echo "=========================Installing Mycroft================================"
+  cd /home/${USER}/
+  git clone https://github.com/shivasiddharth/mycroft-core -b master
+  cd mycroft-core
+  bash dev_setup.sh --allow-root
+  echo ""
+  echo "========================Finished Installing Mycroft========================"
+  echo ""
+  echo "After that, proceed to step-9 mentioned in the README doc to set the assitsant to auto start on boot."
+  ;;
+  All)
+  echo ""
+  echo "=========================Installing Amazon Alexa================================"
   cd ${GIT_DIR}/Alexa/
   sudo chmod +x ./setup.sh
   sudo chmod +x ./pi.sh
   sudo ./setup.sh
   sudo chmod +x ./test.sh
   sudo chmod +x ./startsample.sh
-  clear
   echo "========================Testing Alexa Installation========================"
   sudo ./test.sh
-  echo "Finished Installing Alexa. Proceeding to install Google Assistant"
+  echo ""
+  echo ""
+  echo "===========Finished Installing Alexa. Proceeding to install Mycroft=========="
+  echo ""
+  echo ""
+  echo "=========================Installing Mycroft================================"
+  cd /home/${USER}/
+  git clone https://github.com/shivasiddharth/mycroft-core -b master
+  cd mycroft-core
+  bash dev_setup.sh --allow-root
+  echo ""
+  echo "===========Finished Installing Alexa and Mycroft. Proceeding to install Google Assistant=========="
   echo ""
   echo "Have you downloaded the credentials file, and placed it in /home/pi/ directory?"
   echo ""

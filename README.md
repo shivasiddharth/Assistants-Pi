@@ -1,5 +1,5 @@
 # Assistants-Pi
-## One installer for Google Asistant, Amazon Alexa  and Mycroft 
+## One installer for Google Asistant, Amazon Alexa  and Mycroft
 ## Simultaneously run Google Assistant, Alexa and Mycroft on Raspberry Pi    
 *******************************************************************************************************************************
 ### **If you like the work, find it useful and if you would like to get me a :coffee: :smile:** [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7GH3YDCHZ36QN)  
@@ -29,24 +29,32 @@ https://github.com/alexa/avs-device-sdk/wiki/Create-Security-Profile
 1. Clone the git using:
 ```
 git clone https://github.com/shivasiddharth/Assistants-Pi  
-```
+```  
+
+
 2. Make the installers executable using:
 ```
 sudo chmod +x /home/pi/Assistants-Pi/scripts/prep-system.sh    
 sudo chmod +x /home/pi/Assistants-Pi/scripts/audio-test.sh   
 sudo chmod +x /home/pi/Assistants-Pi/scripts/installer.sh  
-```
+```  
+
+
 3. Prepare the system for installing assistants by updating, upgrading and setting up audio using:  
-```
+```  
 sudo /home/pi/Assistants-Pi/scripts/prep-system.sh
-```
+```  
+
+
 4. Restart the Pi using:
-```
+```  
 sudo reboot
-```
+```  
+
+
 5. Make sure that contents of asoundrc match the contents of asound.conf    
    Open a terminal and type:  
-```
+```  
 sudo nano /etc/asound.conf
 ```
 Open a second terminal and type:    
@@ -55,18 +63,25 @@ sudo nano ~/.asoundrc
 ```
 If the contents of .asoundrc are not same as asound.conf, copy the contents from asound.conf to .asoundrc, save using ctrl+x and y
 
+
 6. Test the audio setup using:  
 ```
 sudo /home/pi/Assistants-Pi/scripts/audio-test.sh  
-```
+```  
+
+
 7. Restart the Pi using:
 ```
 sudo reboot
-```
+```  
+
+
 8. Install the assistant/assistants using the following. This is an interactive script, so just follow the onscreen instructions:
 ```
 sudo /home/pi/Assistants-Pi/scripts/installer.sh  
 ```  
+
+
 9. After verification of the assistants, to make them auto start on boot:  
 Pi 3 and Pi2 users, open the gassistpi-ok-google.service in the /home/pi/Assistants-Pi/systemd folder and add your project-id and model-id in the indicated points.    
 
@@ -86,6 +101,12 @@ For Google Assistant:
 ```
 sudo systemctl enable gassistpi-ok-google.service  
 ```
+
+For Mycroft:    
+```
+sudo systemctl enable mycroft.service    
+```  
+
 #If using Pi zero  
 For Alexa:  
 ```
@@ -95,6 +116,13 @@ For Google Assistant:
 ```
 sudo systemctl enable gassistpi-push-button.service
 ```
+
+For Mycroft:    
+```
+sudo systemctl enable mycroft.service    
+```  
+
+
 10. Authorize Alexa before restarting  
 ```
 sudo /home/pi/Assistants-Pi/Alexa/startsample.sh  
@@ -102,7 +130,7 @@ sudo /home/pi/Assistants-Pi/Alexa/startsample.sh
 
 ### Manually Start The Google Assistant
 
-At any point of time, if you wish to manually start the assistant:
+At any point of time, if you wish to manually start the Google Assistant:
 
 **Ok-Google Hotword/Pi3/Pi2/Armv7 users**   
 Open a terminal and execute the following:
