@@ -48,7 +48,7 @@ sudo /home/pi/Assistants-Pi/scripts/prep-system.sh
   
 #### 4. Restart the Pi using:
 ```  
-     sudo reboot
+sudo reboot
 ```  
   
   
