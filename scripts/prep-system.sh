@@ -58,10 +58,11 @@ echo ""
 
 echo ""
 echo "===============Changing username in service files==========="
-sed -i 's/__USER__/'${USER}'/g' /home/${USER}/Assistants-Pi/systemd/diyHue.service
+
 sed -i 's/__USER__/'${USER}'/g' /home/${USER}/Assistants-Pi/systemd/alexa.service
 sed -i 's/__USER__/'${USER}'/g' /home/${USER}/Assistants-Pi/systemd/gassistpi-ok-google.service
 sed -i 's/__USER__/'${USER}'/g' /home/${USER}/Assistants-Pi/systemd/gassistpi-push-button.service
+sed -i 's/__USER__/'${USER}'/g' /home/${USER}/Assistants-Pi/systemd/mycroft.service
 echo ""
 echo ""
 echo "========== Installing Basic Requisites ============"
