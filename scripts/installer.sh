@@ -160,9 +160,9 @@ case $assistants in
   echo ""
   echo "=========================Installing Mycroft================================"
   cd /home/${USER}/
-  git clone https://github.com/shivasiddharth/mycroft-core -b master
+  git clone https://github.com/shivasiddharth/mycroft-core
   cd mycroft-core
-  bash dev_setup.sh --allow-root
+  bash dev_setup.sh
   echo ""
   echo "========================Finished Installing Mycroft========================"
   echo ""
@@ -186,9 +186,9 @@ case $assistants in
   echo ""
   echo "=========================Installing Mycroft================================"
   cd /home/${USER}/
-  git clone https://github.com/shivasiddharth/mycroft-core -b master
+  git clone https://github.com/shivasiddharth/mycroft-core
   cd mycroft-core
-  bash dev_setup.sh --allow-root
+  bash dev_setup.sh
   echo ""
   echo "===========Finished Installing Alexa and Mycroft. Proceeding to install Google Assistant=========="
   echo ""
