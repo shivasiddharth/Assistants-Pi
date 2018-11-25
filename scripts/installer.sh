@@ -17,11 +17,6 @@ sed -i 's/__USER__/'${USER}'/g' ${GIT_DIR}/systemd/alexa.service
 
 sed -i 's/__USER__/'${USER}'/g' ${GIT_DIR}/systemd/mycroft.service
 
-sed -i 's/__USER__/'${USER}'/g' ${GIT_DIR}/systemd/gassistpi-ok-google.service
-
-sed -i 's/__USER__/'${USER}'/g' ${GIT_DIR}/systemd/gassistpi-push-button.service
-
-
 YES_ANSWER=1
 NO_ANSWER=2
 QUIT_ANSWER=3
@@ -137,13 +132,10 @@ case $assistants in
     echo "=============Starting Google Assistant Installer============="
     cd /home/${USER}/
     git clone https://github.com/shivasiddharth/GassistPi
-    if [[ "$(uname -m)" == "armv7l" ]] ; then
-      sudo chmod +x /home/${USER}/GassistPi/scripts/gassist-installer-pi3.sh
-      sudo /home/${USER}/GassistPi/scripts/gassist-installer-pi3.sh
-    else
-      sudo chmod +x /home/${USER}/GassistPi/scripts/gassist-installer-pi-zero.sh
-      sudo /home/${USER}/GassistPi/scripts/gassist-installer-pi-zero.sh
-    fi
+    sudo chmod +x /home/${USER}/GassistPi/scripts/gassist-installer.sh
+    sudo /home/${USER}/GassistPi/scripts/gassist-installer.sh
+    sudo cp /home/${USER}/GassistPi/systemd/gassistpi.service  ${GIT_DIR}/systemd/gassistpi.service
+    echo ""
     echo ""
     echo "Finished installing Google Assistant....."
   elif ["$USER_RESPONSE" = "$NO_ANSWER" ]; then
@@ -201,13 +193,9 @@ case $assistants in
     echo "=============Starting Google Assistant Installer============="
     cd /home/${USER}/
     git clone https://github.com/shivasiddharth/GassistPi
-    if [[ "$(uname -m)" == "armv7l" ]] ; then
-      sudo chmod +x /home/${USER}/GassistPi/scripts/gassist-installer-pi3.sh
-      sudo /home/${USER}/GassistPi/scripts/gassist-installer-pi3.sh
-    else
-      sudo chmod +x /home/${USER}/GassistPi/scripts/gassist-installer-pi-zero.sh
-      sudo /home/${USER}/GassistPi/scripts/gassist-installer-pi-zero.sh
-    fi
+    sudo chmod +x /home/${USER}/GassistPi/scripts/gassist-installer.sh
+    sudo /home/${USER}/GassistPi/scripts/gassist-installer.sh
+    sudo cp /home/${USER}/GassistPi/systemd/gassistpi.service  ${GIT_DIR}/systemd/gassistpi.service 
     echo ""
     echo "Finished installing Google Assistant....."
     echo ""
