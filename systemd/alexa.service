@@ -6,9 +6,11 @@ After=network.target
 Environment=PATH=/home/__USER__/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ExecStart=/usr/bin/python -u /home/__USER__/Assistants-Pi/Alexa/alexa.py
 WorkingDirectory=/home/__USER__/
-StandardOutput=tty,
+StandardOutput=tty
 StandardError=tty
 Restart=always
+StandardError=null
+TTYPath=/dev/tty12
 User=__USER__
 
 [Install]
