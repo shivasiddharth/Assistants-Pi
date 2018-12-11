@@ -49,8 +49,6 @@ select_option()
 echo ""
 echo "========== Updating and Upgrading System==========="
 sudo apt-get update
-sudo apt-get install raspberrypi-kernel -yq
-sudo apt-get upgrade -yq
 echo ""
 echo "========== Installing Git ============"
 sudo apt-get install -y git
