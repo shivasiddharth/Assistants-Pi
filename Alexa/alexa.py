@@ -2,6 +2,8 @@ import subprocess
 import os
 import tempfile
 import shlex
+import time
+
 #Comment the line below if you want to create your own indicator pattern
 from alexaindicator import assistantindicator
 
@@ -13,6 +15,7 @@ USER_PATH = os.path.realpath(os.path.join(__file__, '..', '..','..'))
 def run_command(command):
     process = subprocess.Popen(shlex.split(command), stdout=subprocess.PIPE)
     while True:
+        time.sleep(.1)
         output = process.stdout.readline()
         if output == '' and process.poll() is not None:
             break
