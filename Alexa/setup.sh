@@ -207,6 +207,7 @@ then
   mkdir -p $SOUNDS_PATH
   mkdir -p $DB_PATH
   mkdir -p $LOG_FOLDER
+  chmod +x $START_SCRIPT
   
   run_os_specifics
 
@@ -225,7 +226,7 @@ then
   echo
   echo "==============> BUILDING SDK =============="
   echo
-  chmod +x START_SCRIPT
+  
   mkdir -p $BUILD_PATH
   cd $BUILD_PATH
   cmake "$SOURCE_PATH/avs-device-sdk" \
