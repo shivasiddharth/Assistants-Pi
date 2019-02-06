@@ -59,6 +59,7 @@ INPUT_CONFIG_FILE="$SOURCE_PATH/avs-device-sdk/Integration/AlexaClientSDKConfig.
 OUTPUT_CONFIG_FILE="$BUILD_PATH/Integration/AlexaClientSDKConfig.json"
 TEMP_CONFIG_FILE="$BUILD_PATH/Integration/tmp_AlexaClientSDKConfig.json"
 TEST_SCRIPT="$INSTALL_BASE/test.sh"
+START_SCRIPT="$INSTALL_BASE/start.sh"
 LIB_SUFFIX="a"
 LOG_FOLDER="$INSTALL_BASE/log"
 
@@ -206,6 +207,7 @@ then
   mkdir -p $SOUNDS_PATH
   mkdir -p $DB_PATH
   mkdir -p $LOG_FOLDER
+  chmod +x START_SCRIPT
   
   run_os_specifics
 
