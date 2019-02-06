@@ -60,6 +60,7 @@ OUTPUT_CONFIG_FILE="$BUILD_PATH/Integration/AlexaClientSDKConfig.json"
 TEMP_CONFIG_FILE="$BUILD_PATH/Integration/tmp_AlexaClientSDKConfig.json"
 TEST_SCRIPT="$INSTALL_BASE/test.sh"
 LIB_SUFFIX="a"
+LOG_FOLDER="$INSTALL_BASE/log"
 
 GSTREAMER_AUDIO_SINK="autoaudiosink"
 
@@ -204,7 +205,8 @@ then
   mkdir -p $THIRD_PARTY_PATH
   mkdir -p $SOUNDS_PATH
   mkdir -p $DB_PATH
-
+  mkdir -p $LOG_FOLDER
+  
   run_os_specifics
 
   if [ ! -d "${SOURCE_PATH}/avs-device-sdk" ]
