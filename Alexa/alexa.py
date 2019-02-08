@@ -26,7 +26,7 @@ def run_command(command):
                 subprocess.Popen(["aplay", "{}/Assistants-Pi/sample-audio-files/AlexaStartup.wav".format(USER_PATH)], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 #Comment the line below if you want to create your own indicator pattern
                 assistantindicator('off')
-            if "AudioInputProcessor:setState:from=IDLE,to=RECOGNIZING" in str(output.strip()):
+            if "listening..." in str(output.strip().lower()):
                 #Change the path to your desired audio file for the trigger alert tone
                 subprocess.Popen(["aplay", "{}/Assistants-Pi/sample-audio-files/AlexaTriggered.wav".format(USER_PATH)], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 #Comment the line below if you want to create your own indicator pattern
