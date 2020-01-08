@@ -111,7 +111,7 @@ case $assistants in
   sudo chmod +x ./pi.sh
   sudo ./setup.sh
   sudo chmod +x ./test.sh
-  sudo chmod +x ./start.sh
+  sudo chmod +x ./startsample.sh
   clear
   echo "========================Testing Alexa Installation========================"
   sudo ./test.sh
@@ -146,7 +146,7 @@ case $assistants in
   sudo chmod +x ./pi.sh
   sudo ./setup.sh
   sudo chmod +x ./test.sh
-  sudo chmod +x ./start.sh
+  sudo chmod +x ./startsample.sh
   clear
   echo "========================Testing Alexa Installation========================"
   sudo ./test.sh
