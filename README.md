@@ -94,3 +94,4 @@ At any point of time, if you wish to manually start the assistant:
 Open a terminal and execute the following:
 ```
 /home/pi/env/bin/python -u /home/pi/GassistPi/src/main.py --project_id 'replace this with the project id '--device_model_id 'replace this with the model id'
+```   
