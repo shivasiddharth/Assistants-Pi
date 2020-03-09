@@ -1,0 +1,13 @@
+pyaudio>=0.2.11
+psutil>=5.4.8
+urllib3>=1.24.1
+google-api-python-client>=1.7.5
+requests>=2.20.1
+pyyaml==3.13
+spidev>=3.2
+gpiozero>=1.4.1
+numpy>=1.15.4
+pycryptodomex==3.7.2
+cryptography==2.4.2
+mock==3.0.5
+oauth2client

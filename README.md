@@ -6,9 +6,7 @@
 
 *******************************************************************************************************************************
 ### Note:
-**13/10/2018: The project has migrated from alexa-avs-sample-app to the Alexa AVS SDK. So pre-existing issues have been closed. Have added indicators and audio prompts for Alexa.**  
-
-**The Google Assistant Component used in this project is the GassistPi project. So for 'Preliminary Setups for the customizations and respective How-Tos' check this [out](https://github.com/shivasiddharth/GassistPi/blob/master/README.md#using-the-customizations)**  
+**10/03/2020: The project is no longer dependent on the GassistPi repo. Issues with installation have been fixed.**  
 ****************************************************************
 **Before Starting the setup**
 ****************************************************************
@@ -68,32 +66,21 @@ sudo reboot
 sudo /home/pi/Assistants-Pi/scripts/installer.sh  
 ```  
 9. After verification of the assistants, to make them auto start on boot:  
-Pi 3 and Pi2 users, open the gassistpi-ok-google.service in the /home/pi/Assistants-Pi/systemd folder and add your project-id and model-id in the indicated points.    
 
-Pi Zero users, open the gassistpi-push-button.service in the /home/pi/Assistants-Pi/systemd folder and add your project-id and model-id in the indicated points.  
-
-After that, open a terminal and run the following commands:  
+Open a terminal and run the following commands:  
 ```
 sudo chmod +x /home/pi/Assistants-Pi/scripts/service-installer.sh
 sudo /home/pi/Assistants-Pi/scripts/service-installer.sh  
 ```
-#If using Pi 2B or Pi 3B  
 For Alexa:  
 ```
 sudo systemctl enable alexa.service  
 ```
 For Google Assistant:  
 ```
-sudo systemctl enable gassistpi-ok-google.service  
+sudo systemctl enable google-assistant.service  
 ```
-#If using Pi zero  
-For Alexa:  
-```
-sudo systemctl enable alexa.service  
-```
-For Google Assistant:  
-```
-sudo systemctl enable gassistpi-push-button.service
+
 ```
 10. Authorize Alexa before restarting  
 ```
@@ -104,13 +91,6 @@ sudo /home/pi/Assistants-Pi/Alexa/startsample.sh
 
 At any point of time, if you wish to manually start the assistant:
 
-**Ok-Google Hotword/Pi3/Pi2/Armv7 users**   
 Open a terminal and execute the following:
 ```
-/home/pi/env/bin/python -u /home/pi/GassistPi/src/main.py --device_model_id 'replace this with the model id'
-
-```
-**Pushbutton/Pi Zero/Pi B+ and other users**   
-Open a terminal and execute the following:
-```
-/home/pi/env/bin/python -u /home/pi/GassistPi/src/pushbutton.py --project-id 'replace this with your project id'  --device-model-id 'replace this with the model id'
+/home/pi/env/bin/python -u /home/pi/GassistPi/src/main.py --project_id 'replace this with the project id '--device_model_id 'replace this with the model id'

@@ -1,0 +1,13 @@
+#Config file for declaring custom actions'parameters. The parameters have been listed here in alphabetical order (A-Z).
+
+#Text to speech conversation
+Speech:
+  Voice_Gender: 'Female'
+
+#Custom wakeword On/Off.
+#To enable custom wakeword, change status to Enabled and restart the assistant.
+Wakewords:
+  Custom_Wakeword: 'Enabled'
+  Custom_wakeword_models:
+    - '/home/pi/GassistPi/src/resources/alexa.umdl'
+    - '/home/pi/GassistPi/src/resources/snowboy.umdl'

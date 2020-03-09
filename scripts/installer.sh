@@ -13,6 +13,20 @@ then
 fi
 clear
 
+#Check CPU architecture
+if [[ $(uname -m|grep "armv7") ]] || [[ $(uname -m|grep "x86_64") ]]; then
+	devmodel="armv7"
+  echo ""
+  echo "Your board is supported. Continuing.."
+  echo ""
+else
+	devmodel="armv6"
+  echo ""
+  echo "Your board is not supported. Exiting..."
+  echo ""
+  exit 1
+fi
+
 YES_ANSWER=1
 NO_ANSWER=2
 QUIT_ANSWER=3
@@ -91,7 +105,7 @@ select_option()
 }
 
 clear
-echo "=============Starting Assistant Installer=============="
+echo "Starting Assistant Installer.........."
 echo ""
 echo "From the list below, choose your option for installation: "
 select_option assistants Google-Assistant Alexa Both
@@ -105,51 +119,45 @@ fi
 case $assistants in
   Alexa)
   echo ""
-  echo "=========================Installing Amazon Alexa================================"
-  cd ${GIT_DIR}/Alexa/
-  sudo chmod +x ./setup.sh
-  sudo chmod +x ./pi.sh
-  sudo ./setup.sh
-  sudo chmod +x ./test.sh
-  sudo chmod +x ./startsample.sh
-  clear
-  echo "========================Testing Alexa Installation========================"
-  sudo ./test.sh
-  echo "========================Finished Installing Amazon Alexa========================"
+  echo "Installing Amazon Alexa.........."
+  echo ""
+  sudo chmod +x ${GIT_DIR}/scripts/alexa-installer.sh
+  sudo ${GIT_DIR}/scripts/alexa-installer.sh
+  echo ""
+  echo "Finished installing Alexa.........."
+  echo ""
   ;;
   Google-Assistant)
   echo "Have you downloaded the credentials file, and placed it in /home/pi/ directory?"
   parse_user_input 1 1 0
   USER_RESPONSE=$?
   if [ "$USER_RESPONSE" = "$YES_ANSWER" ]; then
-    echo "=============Starting Google Assistant Installer============="
-    cd /home/${USER}/
-    git clone https://github.com/shivasiddharth/GassistPi
-    sudo chmod +x /home/${USER}/GassistPi/scripts/gassist-installer.sh
-    sudo /home/${USER}/GassistPi/scripts/gassist-installer.sh
     echo ""
+    echo "Starting Google Assistant Installer.........."
     echo ""
-    echo "Finished installing Google Assistant....."
+    sudo chmod +x ${GIT_DIR}/scripts/gassist-installer.sh
+    sudo ${GIT_DIR}/scripts/gassist-installer.sh
+    echo ""
+    echo "Finished installing Google Assistant.........."
+    echo ""
+    echo "After that, proceed to step-9 mentioned in the README doc to set the assitsants to auto start on boot."
   elif ["$USER_RESPONSE" = "$NO_ANSWER" ]; then
-    echo "Download the credentials file, , place it in /home/pi/ directory and start the installer again.."
+    echo "Download the credentials file, , place it in /home/pi/ directory and start the installer again."
     exit
   fi
   echo ""
-  echo "===============Finished Installing Google Assistant==========="
   echo ""
-  echo "After that, proceed to step-9 mentioned in the README doc to set the assitsants to auto start on boot."
+  echo ""
   exit
   ;;
   Both)
   cd ${GIT_DIR}/Alexa/
-  sudo chmod +x ./setup.sh
-  sudo chmod +x ./pi.sh
-  sudo ./setup.sh
-  sudo chmod +x ./test.sh
-  sudo chmod +x ./startsample.sh
-  clear
-  echo "========================Testing Alexa Installation========================"
-  sudo ./test.sh
+  echo ""
+  echo "Installing Amazon Alexa.........."
+  echo ""
+  sudo chmod +x ${GIT_DIR}/scripts/alexa-installer.sh
+  sudo ${GIT_DIR}/scripts/alexa-installer.sh
+  echo ""
   echo "Finished Installing Alexa. Proceeding to install Google Assistant"
   echo ""
   echo "Have you downloaded the credentials file, and placed it in /home/pi/ directory?"
@@ -158,13 +166,13 @@ case $assistants in
   parse_user_input 1 1 0
   USER_RESPONSE=$?
   if [ "$USER_RESPONSE" = "$YES_ANSWER" ]; then
-    echo "=============Starting Google Assistant Installer============="
-    cd /home/${USER}/
-    git clone https://github.com/shivasiddharth/GassistPi
-    sudo chmod +x /home/${USER}/GassistPi/scripts/gassist-installer.sh
-    sudo /home/${USER}/GassistPi/scripts/gassist-installer.sh
     echo ""
-    echo "Finished installing Google Assistant....."
+    echo "Starting Google Assistant Installer.........."
+    echo ""
+    sudo chmod +x ${GIT_DIR}/scripts/gassist-installer.sh
+    sudo ${GIT_DIR}/scripts/gassist-installer.sh
+    echo ""
+    echo "Finished installing Google Assistant.........."
     echo ""
     echo "After that, proceed to step-9 mentioned in the README doc to set the assitsants to auto start on boot."
   elif ["$USER_RESPONSE" = "$NO_ANSWER" ]; then
