@@ -81,7 +81,7 @@ For Google Assistant:
 sudo systemctl enable google-assistant.service  
 ```
 
-```
+
 10. Authorize Alexa before restarting  
 ```
 sudo /home/pi/Assistants-Pi/Alexa/startsample.sh  
