@@ -17,9 +17,7 @@ nmap
 python-setuptools
 python-pip
 libjack-jackd2-dev
-portaudio19-dev
-libffi-dev
-libssl-dev
+pulseaudio
 libatlas-base-dev
 git
 autoconf
