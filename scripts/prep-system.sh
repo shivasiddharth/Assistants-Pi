@@ -47,21 +47,22 @@ select_option()
 }
 
 echo ""
-echo "========== Updating and Upgrading System==========="
+echo "Updating and Upgrading System........."
 sudo apt-get update
 echo ""
-echo "========== Installing Git ============"
+echo "Installing Git........"
 sudo apt-get install -y git
 echo ""
-
+echo "Installing pulseaudio....."
+sudo apt-get install pulseaudio
 echo ""
-echo "===============Changing username in service files==========="
+echo "Changing username in service files........."
 sed -i 's/__USER__/'${USER}'/g' /home/${USER}/Assistants-Pi/systemd/alexa.service
 sed -i 's/__USER__/'${USER}'/g' /home/${USER}/Assistants-Pi/systemd/gassistpi-ok-google.service
 sed -i 's/__USER__/'${USER}'/g' /home/${USER}/Assistants-Pi/systemd/gassistpi-push-button.service
 echo ""
 echo ""
-echo "========== Installing Basic Requisites ============"
+echo "Installing Basic Requisites........."
 sudo pip install pyyaml
 pip install pyyaml
 sudo pip install spidev
