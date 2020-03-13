@@ -1,11 +1,17 @@
 [Unit]
-Description=Amazon Alexa
-After=network.target network-online.target
+Description=Amazon Alexa Voice Service
+Wants=network-online.target
+After=network-online.target
 
 [Service]
 Type=forking
 ExecStart=/home/__USER__/Assistants-Pi/Alexa/start.sh
 
+WorkingDirectory=/home/__USER__/
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=__USER__
 
 [Install]
 WantedBy=multi-user.target

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #
 # Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
@@ -18,19 +18,7 @@
 set -o errexit  # Exit the script if any statement fails.
 set -o nounset  # Exit the script if any uninitialized variable is used.
 
-scripts_dir="$(dirname "${BASH_SOURCE[0]}")"
-GIT_DIR="$(realpath $(dirname ${BASH_SOURCE[0]})/..)"
-
-# make sure we're running as the owner of the checkout directory
-RUN_AS="$(ls -ld "$scripts_dir" | awk 'NR==1 {print $3}')"
-if [ "$USER" != "$RUN_AS" ]
-then
-    echo "This script must run as $RUN_AS, trying to change user..."
-    exec sudo -u $RUN_AS $0
-fi
-clear
-
-LOCALE=${LOCALE:-'en-US'}
+CLONE_URL="https://github.com/shivasiddharth/avs-device-sdk"
 
 PORT_AUDIO_FILE="pa_stable_v190600_20161030.tgz"
 PORT_AUDIO_DOWNLOAD_URL="http://www.portaudio.com/archives/$PORT_AUDIO_FILE"
@@ -59,19 +47,19 @@ INPUT_CONFIG_FILE="$SOURCE_PATH/avs-device-sdk/Integration/AlexaClientSDKConfig.
 OUTPUT_CONFIG_FILE="$BUILD_PATH/Integration/AlexaClientSDKConfig.json"
 TEMP_CONFIG_FILE="$BUILD_PATH/Integration/tmp_AlexaClientSDKConfig.json"
 TEST_SCRIPT="$INSTALL_BASE/test.sh"
-START_SH="$INSTALL_BASE/start.sh"
 LIB_SUFFIX="a"
-LOG_FOLDER="$INSTALL_BASE/log"
+ANDROID_CONFIG_FILE=""
 
-GSTREAMER_AUDIO_SINK="autoaudiosink"
-
+# Default device serial number if nothing is specified
 DEVICE_SERIAL_NUMBER="123456"
 
-echo ""
-read -r -p "Enter the client id: " CLIENT_ID
-echo ""
-read -r -p "Enter the product id: " PRODUCT_ID
-echo ""
+# Default device manufacturer name
+DEVICE_MANUFACTURER_NAME=${DEVICE_MANUFACTURER_NAME:-"Test Manufacturer"}
+
+# Default device description
+DEVICE_DESCRIPTION=${DEVICE_DESCRIPTION:-"Test Device"}
+
+GSTREAMER_AUDIO_SINK="autoaudiosink"
 
 build_port_audio() {
   # build port audio
@@ -106,6 +94,64 @@ get_platform() {
   fi
 }
 
+show_help() {
+  echo  'Usage: setup.sh <config-json-file> [OPTIONS]'
+  echo  'The <config-json-file> can be downloaded from developer portal and must contain the following:'
+  echo  '   "clientId": "<OAuth client ID>"'
+  echo  '   "productId": "<your product name for device>"'
+  echo  ''
+  echo  'Optional parameters'
+  echo  '  -s <serial-number>  If nothing is provided, the default device serial number is 123456'
+  echo  '  -a <file-name>      The file that contains Android installation configurations (e.g. androidConfig.txt)'
+  echo  '  -d <description>    The description of the device.'
+  echo  '  -m <manufacturer>   The device manufacturer name.'
+  echo  '  -h                  Display this help and exit'
+}
+
+if [[ $# -lt 1 ]]; then
+    show_help
+    exit 1
+fi
+
+CONFIG_JSON_FILE=$1
+if [ ! -f "$CONFIG_JSON_FILE" ]; then
+    echo "Config json file not found!"
+    show_help
+    exit 1
+fi
+shift 1
+
+OPTIONS=s:a:m:d:h
+while getopts "$OPTIONS" opt ; do
+    case $opt in
+        s )
+            DEVICE_SERIAL_NUMBER="$OPTARG"
+            ;;
+        a )
+            ANDROID_CONFIG_FILE="$OPTARG"
+            if [ ! -f "$ANDROID_CONFIG_FILE" ]; then
+                echo "Android config file is not found!"
+                exit 1
+            fi
+            source $ANDROID_CONFIG_FILE
+            ;;
+        d )
+            DEVICE_DESCRIPTION="$OPTARG"
+            ;;
+        m )
+            DEVICE_MANUFACTURER_NAME="$OPTARG"
+            ;;
+        h )
+            show_help
+            exit 1
+            ;;
+    esac
+done
+
+if [[ ! "$DEVICE_SERIAL_NUMBER" =~ [0-9a-zA-Z_]+ ]]; then
+   echo 'Device serial number is invalid!'
+   exit 1
+fi
 
 # The target platform for the build.
 PLATFORM=${PLATFORM:-$(get_platform)}
@@ -113,7 +159,6 @@ PLATFORM=${PLATFORM:-$(get_platform)}
 if [ "$PLATFORM" == "Raspberry pi" ]
 then
   source pi.sh
-
 elif [ "$PLATFORM" == "Windows mingw64" ]
 then
   source mingw.sh
@@ -127,25 +172,6 @@ then
       echo "The installation script doesn't support current system. (System: $(uname -a))"
       exit 1
     fi
-fi
-
-if [[ ! "$CLIENT_ID" =~ amzn1\.application-oa2-client\.[0-9a-z]{32} ]]
-then
-  echo 'client ID is invalid!'
-  exit 1
-fi
-
-if [[ ! "$PRODUCT_ID" =~ [0-9a-zA-Z_]+ ]]
-then
-  echo 'product ID is invalid!'
-  echo $PRODUCT_ID
-  exit 1
-fi
-
-if [[ ! "$DEVICE_SERIAL_NUMBER" =~ [0-9a-zA-Z_]+ ]]
-then
-  echo 'device serial number is invalid!'
-  exit 1
 fi
 
 echo "################################################################################"
@@ -206,9 +232,7 @@ then
   mkdir -p $THIRD_PARTY_PATH
   mkdir -p $SOUNDS_PATH
   mkdir -p $DB_PATH
-  mkdir -p $LOG_FOLDER
-  chmod +x $START_SH
-  
+
   run_os_specifics
 
   if [ ! -d "${SOURCE_PATH}/avs-device-sdk" ]
@@ -219,14 +243,14 @@ then
     echo
 
     cd $SOURCE_PATH
-    git clone --single-branch git://github.com/shivasiddharth/avs-device-sdk.git
+    git clone $CLONE_URL
   fi
 
   # make the SDK
   echo
   echo "==============> BUILDING SDK =============="
   echo
-  
+
   mkdir -p $BUILD_PATH
   cd $BUILD_PATH
   cmake "$SOURCE_PATH/avs-device-sdk" \
@@ -245,35 +269,6 @@ echo
 echo "==============> SAVING CONFIGURATION FILE =============="
 echo
 
-# Set variables for configuration file
-
-# Variables for cblAuthDelegate
-SDK_CBL_AUTH_DELEGATE_DATABASE_FILE_PATH=$CONFIG_DB_PATH/cblAuthDelegate.db
-
-# Variables for deviceInfo
-SDK_CONFIG_DEVICE_SERIAL_NUMBER=$DEVICE_SERIAL_NUMBER
-SDK_CONFIG_CLIENT_ID=$CLIENT_ID
-SDK_CONFIG_PRODUCT_ID=$PRODUCT_ID
-
-# Variables for miscDatabase
-SDK_MISC_DATABASE_FILE_PATH=$CONFIG_DB_PATH/miscDatabase.db
-
-# Variables for alertsCapabilityAgent
-SDK_SQLITE_DATABASE_FILE_PATH=$CONFIG_DB_PATH/alerts.db
-
-# Variables for settings
-SDK_SQLITE_SETTINGS_DATABASE_FILE_PATH=$CONFIG_DB_PATH/settings.db
-SETTING_LOCALE_VALUE=$LOCALE
-
-# Variables for bluetooth
-SDK_BLUETOOTH_DATABASE_FILE_PATH=$CONFIG_DB_PATH/bluetooth.db
-
-# Variables for certifiedSender
-SDK_CERTIFIED_SENDER_DATABASE_FILE_PATH=$CONFIG_DB_PATH/certifiedSender.db
-
-# Variables for notifications
-SDK_NOTIFICATIONS_DATABASE_FILE_PATH=$CONFIG_DB_PATH/notifications.db
-
 # Create configuration file with audioSink configuration at the beginning of the file
 cat << EOF > "$OUTPUT_CONFIG_FILE"
  {
@@ -282,20 +277,9 @@ cat << EOF > "$OUTPUT_CONFIG_FILE"
     },
 EOF
 
-# Check if temporary file exists
-if [ -f $TEMP_CONFIG_FILE ]; then
-  rm $TEMP_CONFIG_FILE
-fi
-
-# Create temporary configuration file with variables filled out
-while IFS='' read -r line || [[ -n "$line" ]]; do
-    while [[ "$line" =~ (\$\{[a-zA-Z_][a-zA-Z_0-9]*\}) ]]; do
-        LHS=${BASH_REMATCH[1]}
-        RHS="$(eval echo "\"$LHS\"")"
-        line=${line//$LHS/$RHS}
-    done
-    echo "$line" >> $TEMP_CONFIG_FILE
-done < $INPUT_CONFIG_FILE
+cd $INSTALL_BASE
+bash genConfig.sh config.json $DEVICE_SERIAL_NUMBER $CONFIG_DB_PATH $SOURCE_PATH/avs-device-sdk $TEMP_CONFIG_FILE \
+  -DSDK_CONFIG_MANUFACTURER_NAME="$DEVICE_MANUFACTURER_NAME" -DSDK_CONFIG_DEVICE_DESCRIPTION="$DEVICE_DESCRIPTION"
 
 # Delete first line from temp file to remove opening bracket
 sed -i -e "1d" $TEMP_CONFIG_FILE
@@ -313,15 +297,6 @@ cat $OUTPUT_CONFIG_FILE
 
 generate_start_script
 
-cat << EOF > "$TEST_SCRIPT"
-echo
-echo "==============> BUILDING Tests =============="
-echo
-mkdir -p "$UNIT_TEST_MODEL_PATH"
-cp "$UNIT_TEST_MODEL" "$UNIT_TEST_MODEL_PATH"
-cd $BUILD_PATH
-make all test -j2
-chmod +x "$START_SCRIPT"
-EOF
+generate_test_script
 
 echo " **** Completed Configuration/Build ***"

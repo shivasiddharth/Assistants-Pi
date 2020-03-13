@@ -47,29 +47,32 @@ select_option()
 }
 
 echo ""
-echo "========== Updating and Upgrading System==========="
+echo "Updating and Upgrading System........."
 sudo apt-get update
 echo ""
-echo "========== Installing Git ============"
+echo "Installing Git........"
 sudo apt-get install -y git
 echo ""
-
+echo "Installing pulseaudio....."
+sudo apt-get install pulseaudio
 echo ""
-echo "===============Changing username in service files==========="
+echo "Installing screen...."
+sudo apt-get install screen
+echo ""
+echo "Changing username in service files........."
 sed -i 's/__USER__/'${USER}'/g' /home/${USER}/Assistants-Pi/systemd/alexa.service
-sed -i 's/__USER__/'${USER}'/g' /home/${USER}/Assistants-Pi/systemd/gassistpi-ok-google.service
-sed -i 's/__USER__/'${USER}'/g' /home/${USER}/Assistants-Pi/systemd/gassistpi-push-button.service
+sed -i 's/__USER__/'${USER}'/g' /home/${USER}/Assistants-Pi/systemd/google-assistant.service
 echo ""
 echo ""
-echo "========== Installing Basic Requisites ============"
-sudo pip install pyyaml
-pip install pyyaml
-sudo pip install spidev
-pip install spidev
-sudo pip install gpiozero
-pip install gpiozero
-sudo pip install numpy
-pip install numpy
+echo "Installing Basic Requisites........."
+sudo pip3 install pyyaml
+pip3 install pyyaml
+sudo pip3 install spidev
+pip3 install spidev
+sudo pip3 install gpiozero
+pip3 install gpiozero
+sudo pip3 install numpy
+pip3 install numpy
 echo ""
 echo ""
 echo "Select your audio and mic configuration: "

@@ -1,5 +1,5 @@
 #
-# Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+# Copyright 2018-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License").
 # You may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ if [ -z "$PLATFORM" ]; then
 	exit 1
 fi
 
-SOUND_CONFIG="$HOME/.asoundrc"
+
 START_SCRIPT="$INSTALL_BASE/startsample.sh"
 CMAKE_PLATFORM_SPECIFIC=(-DSENSORY_KEY_WORD_DETECTOR=ON \
     -DGSTREAMER_MEDIA_PLAYER=ON -DPORTAUDIO=ON \
@@ -31,14 +31,14 @@ GSTREAMER_AUDIO_SINK="alsasink"
 
 install_dependencies() {
   sudo apt-get update
-  sudo apt-get -y install git gcc cmake screen build-essential libsqlite3-dev libcurl4-openssl-dev libfaad-dev libsoup2.4-dev libgcrypt20-dev libgstreamer-plugins-bad1.0-dev gstreamer1.0-plugins-good libasound2-dev sox gedit vim python3-pip
+  sudo apt-get -y install git gcc libdbus-glib-1-dev cmake build-essential libsqlite3-dev libcurl4-openssl-dev libssl-dev libfaad-dev libsoup2.4-dev libgcrypt20-dev libgstreamer-plugins-bad1.0-dev gstreamer1.0-plugins-good libasound2-dev sox gedit vim python3-pip
   pip install flask commentjson
 }
 
 run_os_specifics() {
   build_port_audio
   build_kwd_engine
-  }
+}
 
 build_kwd_engine() {
   #get sensory and build
@@ -56,5 +56,17 @@ generate_start_script() {
   cd "$BUILD_PATH/SampleApp/src"
 
   ./SampleApp "$OUTPUT_CONFIG_FILE" "$THIRD_PARTY_PATH/alexa-rpi/models" INFO
+EOF
+}
+
+generate_test_script() {
+  cat << EOF > "${TEST_SCRIPT}"
+  echo
+  echo "==============> BUILDING Tests =============="
+  echo
+  mkdir -p "$UNIT_TEST_MODEL_PATH"
+  cp "$UNIT_TEST_MODEL" "$UNIT_TEST_MODEL_PATH"
+  cd $BUILD_PATH
+  make all test -j2
 EOF
 }
