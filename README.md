@@ -6,7 +6,7 @@
 
 *******************************************************************************************************************************
 ### Note:
-**10/03/2020: The project is no longer dependent on the GassistPi repo. Issues with installation have been fixed.**  
+**14/03/2020: The project is no longer dependent on the GassistPi repo. Issues with installation have been fixed. CPU usage has also been taken care of.**  
 ****************************************************************
 **Before Starting the setup**
 ****************************************************************
@@ -20,6 +20,9 @@
 **For Amazon Alexa**  
 1. Create a security profile for alexa-avs-sample-app if you already don't have one.  
 https://github.com/alexa/avs-device-sdk/wiki/Create-Security-Profile  
+
+2. Download the **"config.json"** file and place it in the **/home/pi/Assistants-Pi/Alexa** directory.  
+
 
 ***************************************************************
 **Setup Amazon Alexa, Google Assistant or Both**     
