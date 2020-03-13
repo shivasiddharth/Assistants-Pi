@@ -18,7 +18,7 @@ cd ${GIT_DIR}/Alexa/
 sudo chmod +x ./setup.sh
 sudo chmod +x ./pi.sh
 sudo chmod +x ./genConfig.sh
-sudo ./setup.sh
+sudo ./setup.sh ./config.json
 sudo chmod +x ./test.sh
 sudo chmod +x ./startsample.sh
 echo "Testing Alexa Installation............"
