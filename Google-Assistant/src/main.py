@@ -65,7 +65,7 @@ WARNING_NOT_REGISTERED = """
 """
 
 logging.root.handlers = []
-logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.DEBUG , filename='/tmp/GassistPi.log')
+logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.DEBUG , filename='/tmp/Google-Assistant.log')
 console = logging.StreamHandler()
 console.setLevel(logging.ERROR)
 formatter = logging.Formatter('%(asctime)s : %(levelname)s : %(message)s')
