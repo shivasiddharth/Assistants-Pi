@@ -149,7 +149,7 @@ if [[ $osversion != "Raspbian Stretch" ]] && [[ $osversion != "Raspbian Buster" 
   sudo make
 
   if [ -e /home/${USER}/programs/snowboy/swig/Python3/_snowboydetect.so ]; then
-    echo "Copying Snowboy files to GassistPi directory"
+    echo "Copying Snowboy files to Google Assistant directory"
     sudo \cp -f ./_snowboydetect.so ${GIT_DIR}/Google-Assistant/src/_snowboydetect.so
     sudo \cp -f ./snowboydetect.py ${GIT_DIR}/Google-Assistant/src/snowboydetect.py
   else
