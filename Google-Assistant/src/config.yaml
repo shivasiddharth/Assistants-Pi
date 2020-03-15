@@ -9,5 +9,5 @@ Speech:
 Wakewords:
   Custom_Wakeword: 'Enabled'
   Custom_wakeword_models:
-    - '/home/pi/GassistPi/src/resources/alexa.umdl'
-    - '/home/pi/GassistPi/src/resources/snowboy.umdl'
+    - '/home/pi/Assistants-Pi/Google-Assistant/src/resources/alexa.umdl'
+    - '/home/pi/Assistants-Pi/Google-Assistant/src/resources/snowboy.umdl'
