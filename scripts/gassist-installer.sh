@@ -35,7 +35,7 @@ echo ""
 echo "Your Model-Id: $modelid Project-Id: $projid used for this project" >> /home/${USER}/modelid.txt
 
 sudo apt-get update -y
-sed 's/#.*//' ${GIT_DIR}/Google-Assistant/Requirements/GassistPi-system-requirements.txt | xargs sudo apt-get install -y
+sed 's/#.*//' ${GIT_DIR}/Google-Assistant/Requirements/Google-Assistant-system-requirements.txt | xargs sudo apt-get install -y
 sudo pip install pyaudio
 
 #Check OS Version
@@ -170,7 +170,7 @@ python3 -m venv env
 env/bin/python -m pip install --upgrade pip setuptools wheel
 source env/bin/activate
 
-pip install -r ${GIT_DIR}/Google-Assistant/Requirements/GassistPi-pip-requirements.txt
+pip install -r ${GIT_DIR}/Google-Assistant/Requirements/Google-Assistant-pip-requirements.txt
 
 if [[ $board = "Raspberry" ]] && [[ $osversion != "OSMC Stretch" ]];then
 	pip install RPi.GPIO==0.6.3
