@@ -32,6 +32,7 @@ import snowboydecoder
 import sys
 import signal
 import requests
+import yaml
 import google.oauth2.credentials
 from google.assistant.library import Assistant
 from google.assistant.library.event import EventType
@@ -75,7 +76,7 @@ logging.getLogger("").addHandler(console)
 ROOT_PATH = os.path.realpath(os.path.join(__file__, '..', '..'))
 USER_PATH = os.path.realpath(os.path.join(__file__, '..', '..','..'))
 
-with open('{}/Google-Assistant/src/config.yaml'.format(ROOT_PATH),'r', encoding='utf8') as conf:
+with open('{}/src/config.yaml'.format(ROOT_PATH),'r', encoding='utf8') as conf:
     configuration = yaml.load(conf)
 
 #Check if custom wakeword has been enabled
