@@ -120,8 +120,8 @@ if [[ $osversion = "Raspbian Buster" ]]; then
   sudo \cp -f ${GIT_DIR}/Google-Assistant/src/resources/Buster-wrapper/_snowboydetect.so ${GIT_DIR}/Google-Assistant/src/_snowboydetect.so
   sudo \cp -f ${GIT_DIR}/Google-Assistant/src/resources/Buster-wrapper/snowboydetect.py ${GIT_DIR}/Google-Assistant/src/snowboydetect.py
 elif [[ $osversion = "Raspbian Stretch" ]]; then
-  sudo \cp -f ${GIT_DIR}/Google-Assistant/src/resources/Stretch-wrapper/_snowboydetect.so ${GIT_DIR}/src/_snowboydetect.so
-  sudo \cp -f ${GIT_DIR}/Google-Assistant/src/resources/Stretch-wrapper/snowboydetect.py ${GIT_DIR}/src/snowboydetect.py
+  sudo \cp -f ${GIT_DIR}/Google-Assistant/src/resources/Stretch-wrapper/_snowboydetect.so ${GIT_DIR}/Google-Assistant/src/_snowboydetect.so
+  sudo \cp -f ${GIT_DIR}/Google-Assistant/src/resources/Stretch-wrapper/snowboydetect.py ${GIT_DIR}/Google-Assistant/src/snowboydetect.py
 fi
 
 if [[ $osversion != "Raspbian Stretch" ]] && [[ $osversion != "Raspbian Buster" ]]; then
