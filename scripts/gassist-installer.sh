@@ -172,7 +172,7 @@ source env/bin/activate
 pip install -r ${GIT_DIR}/Google-Assistant/Requirements/Google-Assistant-pip-requirements.txt
 
 if [[ $osversion != "OSMC Stretch" ]];then
-	pip install RPi.GPIO==0.6.3
+	pip install RPi.GPIO
 fi
 
 pip install google-assistant-library==1.1.0
