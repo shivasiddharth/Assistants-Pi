@@ -30,7 +30,7 @@ https://github.com/alexa/avs-device-sdk/wiki/Create-Security-Profile
 git clone https://github.com/shivasiddharth/Assistants-Pi  
 ```    
 **DO NOT RENAME THE CREDENTIALS FILEs**     
-Place the Alexa **config.json in** file in the  **/home/pi/Assistants-Pi/Alexa** directory.
+Place the Alexa **config.json in** file in the  **/home/pi/Assistants-Pi/Alexa** directory.        
 Place the Google **client_secret.....json** file in the **/home/pi/** directory.     
 
 2. Make the installers executable using:
