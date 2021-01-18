@@ -171,7 +171,7 @@ source env/bin/activate
 
 pip install -r ${GIT_DIR}/Google-Assistant/Requirements/Google-Assistant-pip-requirements.txt
 
-if [[ $board = "Raspberry" ]] && [[ $osversion != "OSMC Stretch" ]];then
+if [[ $osversion != "OSMC Stretch" ]];then
 	pip install RPi.GPIO==0.6.3
 fi
 
