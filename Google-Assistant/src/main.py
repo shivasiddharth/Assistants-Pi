@@ -40,11 +40,13 @@ from google.assistant.library.file_helpers import existing_file
 from google.assistant.library.device_helpers import register_device
 from threading import Thread
 from pathlib import Path
+
 try:
     import RPi.GPIO as GPIO
 except Exception as e:
     if str(e) == 'No module named \'RPi\'':
         GPIO = None
+
 if GPIO!=None:
     from indicator import assistantindicator
     GPIOcontrol=True
@@ -76,7 +78,7 @@ logging.getLogger("").addHandler(console)
 ROOT_PATH = os.path.realpath(os.path.join(__file__, '..', '..'))
 USER_PATH = os.path.realpath(os.path.join(__file__, '..', '..','..'))
 
-with open('{}/src/config.yaml'.format(ROOT_PATH),'r', encoding='utf8') as conf:
+with open('{}/Google-Assistant/src/config.yaml'.format(USER_PATH),'r', encoding='utf8') as conf:
     configuration = yaml.load(conf)
 
 #Check if custom wakeword has been enabled
@@ -138,7 +140,7 @@ class Myassistant():
                 self.t1.start()
 
         if event.type == EventType.ON_CONVERSATION_TURN_STARTED:
-            subprocess.Popen(["aplay", "{}/sample-audio-files/Fb.wav".format(ROOT_PATH)], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            subprocess.Popen(["aplay", "{}/sample-audio-files/Fb.wav".format(USER_PATH)], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             if GPIOcontrol:
                 assistantindicator('listening')
             self.can_start_conversation = False
@@ -278,10 +280,10 @@ class Myassistant():
         device_model_id = args.device_model_id or device_model_id
         with Assistant(credentials, device_model_id) as assistant:
             self.assistant = assistant
-            if gender=='Male':
-                subprocess.Popen(["aplay", "{}/sample-audio-files/Startup-Male.wav".format(ROOT_PATH)], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            if gender=='Male':                
+                subprocess.Popen(["aplay", "{}/sample-audio-files/Startup-Male.wav".format(USER_PATH)], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             else:
-                subprocess.Popen(["aplay", "{}/sample-audio-files/Startup-Female.wav".format(ROOT_PATH)], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                subprocess.Popen(["aplay", "{}/sample-audio-files/Startup-Female.wav".format(USER_PATH)], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             events = assistant.start()
             device_id = assistant.device_id
             print('device_model_id:', device_model_id)

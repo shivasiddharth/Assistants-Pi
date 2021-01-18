@@ -16,18 +16,19 @@ try:
     import queue as Queue
 except ImportError:
     import Queue as Queue
-
+import yaml
 
 audiosetup=''
 
 USER_PATH = os.path.realpath(os.path.join(__file__, '..', '..','..'))
 
-with open('{}/Google-Assistant/src/config.yaml'.format(ROOT_PATH),'r', encoding='utf8') as conf:
+with open('{}/Google-Assistant/src/config.yaml'.format(USER_PATH),'r', encoding='utf8') as conf:
     configuration = yaml.load(conf)
 
 
-if os.path.isfile("{}/audiosetup".format(USER_PATH)):
-    with open('{}/audiosetup'.format(USER_PATH)) as f:
+
+if os.path.isfile("/home/pi/audiosetup"):
+    with open("/home/pi/audiosetup") as f:
         detected_audio_setup = f.readline().rstrip()
         print(detected_audio_setup)
         if (detected_audio_setup=='AIY-HAT' or detected_audio_setup=='CUSTOM-VOICE-HAT'):

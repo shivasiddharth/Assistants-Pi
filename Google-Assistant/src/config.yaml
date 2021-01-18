@@ -28,7 +28,7 @@ Speech:
 #Custom wakeword On/Off.
 #To enable custom wakeword, change status to Enabled and restart the assistant.
 Wakewords:
-  Custom_Wakeword: 'Enabled'
+  Custom_Wakeword: 'Disabled'
   Custom_wakeword_models:
     - '/home/pi/Assistants-Pi/Google-Assistant/src/resources/alexa.umdl'
     - '/home/pi/Assistants-Pi/Google-Assistant/src/resources/snowboy.umdl'
