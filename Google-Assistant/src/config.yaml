@@ -1,5 +1,26 @@
 #Config file for declaring custom actions'parameters. The parameters have been listed here in alphabetical order (A-Z).
 
+#GPIOS used in the project. Feel free to change in case.
+Gpios:
+  AIY_indicator:
+    - 25
+  assistant_indicators:
+    - 05
+    - 06
+  ir:
+    - 17
+  picontrol:
+    - 12
+    - 13
+    - 24
+  pushbutton_trigger:
+    - 22
+  servo:
+    - 27
+  stopbutton_music_AIY_pushbutton:
+    - 23
+
+
 #Text to speech conversation
 Speech:
   Voice_Gender: 'Female'
