@@ -161,7 +161,6 @@ cd /home/${USER}/
 echo ""
 echo ""
 echo "Changing particulars in service files"
-sed -i '/main.py/d' ${GIT_DIR}/systemd/google-assistant.service
 sed -i 's/created-project-id/'$projid'/g' ${GIT_DIR}/systemd/google-assistant.service
 sed -i 's/saved-model-id/'$modelid'/g' ${GIT_DIR}/systemd/google-assistant.service
 sed -i 's/__USER__/'${USER}'/g' ${GIT_DIR}/systemd/google-assistant.service
