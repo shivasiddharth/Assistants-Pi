@@ -13,6 +13,6 @@ psKill(){
 processes=($(_psName2Ids "alexa.py"))
 if [ ${#processes[@]} -le 1 ]; then
     cd "$ALEXA_FOLDER"
-    psKill "alexa.py"
+    pkill "alexa.py"
     sudo screen -dm sudo python3 /home/pi/Assistants-Pi/Alexa/alexa.py
 fi;
