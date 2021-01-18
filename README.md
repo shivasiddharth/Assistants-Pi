@@ -6,7 +6,7 @@
 
 *******************************************************************************************************************************
 ### Note:
-**14/03/2020: The project is no longer dependent on the GassistPi repo. Issues with installation have been fixed. CPU usage has also been taken care of.**  
+**18/01/2020: Routine update and bug fixes.**  
 ****************************************************************
 **Before Starting the setup**
 ****************************************************************
