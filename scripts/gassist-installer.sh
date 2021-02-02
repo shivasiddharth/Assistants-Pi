@@ -175,6 +175,11 @@ if [[ $osversion != "OSMC Stretch" ]];then
 	pip install RPi.GPIO
 fi
 
+sudo sed -i -e "s/^autospawn=no/#\0/" /etc/pulse/client.conf.d/00-disable-autospawn.conf
+if [ -f /lib/udev/rules.d/91-pulseaudio-rpi.rules ] ; then
+    sudo rm /lib/udev/rules.d/91-pulseaudio-rpi.rules
+fi
+  
 pip install google-assistant-library==1.1.0
 pip install google-assistant-grpc==0.3.0
 pip install google-assistant-sdk==0.6.0
