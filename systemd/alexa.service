@@ -5,7 +5,7 @@ After=network-online.target
 
 [Service]
 Type=forking
-ExecStart=/home/__USER__/Assistants-Pi/Alexa/start.sh
+ExecStart=sudo /home/__USER__/Assistants-Pi/Alexa/start.sh
 
 WorkingDirectory=/home/__USER__/
 StandardOutput=inherit
