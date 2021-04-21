@@ -106,4 +106,4 @@ Open a terminal and execute the following:
 /home/pi/env/bin/python -u /home/pi/Assistants-Pi/Google-Assistant/src/main.py --project_id 'replace this with the project id '--device_model_id 'replace this with the model id'
 ```   
 
-## If you have issues with the Assistants strating on boot, you may have to setup PulseAudio as a system wide service. For further details refer this git https://github.com/shivasiddharth/PulseAudio-System-Wide      
+#### If you have issues with the Assistants strating on boot, you may have to setup PulseAudio as a system wide service. For further details refer this git https://github.com/shivasiddharth/PulseAudio-System-Wide      
