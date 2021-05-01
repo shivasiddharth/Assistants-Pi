@@ -15,7 +15,7 @@ clear
 
 #Check CPU architecture
 if [[ $(uname -m|grep "armv7") ]] || [[ $(uname -m|grep "x86_64") ]]; then
-	devmodel="armv7"
+	devmodel="x86"
   echo ""
   echo "Your board is supported. Continuing.."
   echo ""
